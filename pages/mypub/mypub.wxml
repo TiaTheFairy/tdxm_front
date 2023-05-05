@@ -1,0 +1,55 @@
+<view class="zdm_mypub">
+  <span class="iconfont icon_31fanhui1">我的发布</span>
+  <span class="iconfont icon_xinzeng"></span>
+
+  <view>
+    <text>发布时间</text>
+    <select name="year" id="">
+      <option>2022</option>
+      <option>2023</option>
+      <option>2024</option>
+      <option>2025</option>
+    </select>
+    <select name="month" id="">
+      <option>1</option>
+      <option>2</option>
+      <option>3</option>
+      <option>4</option>
+      <option>5</option>
+      <option>6</option>
+      <option>7</option>
+      <option>8</option>
+      <option>9</option>
+      <option>10</option>
+      <option>11</option>
+      <option>12</option>
+    </select>
+  </view>
+
+  <!--第一件商品-->
+  <view>
+    <image src="" mode=""/>
+    <span class="iconfont icon_redu"></span>
+    <span class="iconfont icon_zanfill"></span>
+    <span class="iconfont icon_pinglun"></span>
+    <span class="iconfont icon_daohangshoucangyishoucang"></span>
+  </view>
+
+  <!--第二件商品-->
+  <view>
+    <image src="" mode=""/>
+    <span class="iconfont icon_redu"></span>
+    <span class="iconfont icon_zanfill"></span>
+    <span class="iconfont icon_pinglun"></span>
+    <span class="iconfont icon_daohangshoucangyishoucang"></span>
+  </view>
+
+  <!--第三件商品-->
+  <view>
+    <image src="" mode=""/>
+    <span class="iconfont icon_redu"></span>
+    <span class="iconfont icon_zanfill"></span>
+    <span class="iconfont icon_pinglun"></span>
+    <span class="iconfont icon_daohangshoucangyishoucang"></span>
+  </view>
+</view>

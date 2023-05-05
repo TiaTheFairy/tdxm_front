@@ -1,0 +1,14 @@
+.sousuokuang {
+  height: 45px;
+  padding: 10px;
+  background-color: var(--themeColor);
+}
+.sousuokuang navigator {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #fff;
+  border-radius: 5px;
+  color: #666;
+}

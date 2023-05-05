@@ -1,0 +1,83 @@
+<view>
+  <wxs module="fn">
+    module.exports = {
+      formatDesc: function(desc){
+        if(desc.length > 13){
+          return desc.substring(0,13) + '...';
+        }
+        return desc;
+      },
+      formatGender:function(gender){
+        if(gender){
+          return gender==1 ? "男":"女";
+        }
+        return "保密";
+      },
+      formatBirthday: function(birthday){
+        if(birthday[0]){
+          var month = birthday[1] < 10? "0"+birthday[1] : birthday[1];
+          var day = birthday[2] < 10 ? "0"+birthday[2] : birthday[2];
+          return birthday[0] + '/' + month + '/' + day;
+        }
+        return "未设置";
+      },
+      formatCampus: function(campus){
+        var campuses = ["石牌校区","番禺校区","珠海校区","深圳校区"];
+        return campuses[campus];
+      }
+    }
+  </wxs>
+
+  <!-- <view class='top'>
+    <text class='back'>
+      <text class='iconfont icon_back' bindtap="back"></text>
+    </text>
+    <text class='title'>个人资料</text>
+  </view> -->
+
+  <view class='main'>
+    <view class='avatar listItem'>
+      <image class='picture' src="../../public/assets/placeholder.png"></image>
+      <text class='camera iconfont icon_camera'></text>
+    </view>
+    <view class='nickname listItem'>
+      <text class='listLeft'>昵称</text>
+      <text class='listRight' bindtap="editInfo" data-word="nickname">
+        <text class='content'>{{nickname}}</text>
+        <text class='iconfont icon_next'></text>
+      </text>
+    </view> 
+    <view class='divider'></view>
+    <view class='desc listItem'>
+      <text class='listLeft'>简介</text>
+      <text class='listRight' bindtap="editInfo" data-word="desc">
+        <text class='content'>{{fn.formatDesc(desc)}}</text>
+        <text class='iconfont icon_next'></text>
+      </text>
+    </view>
+    <view class='divider'></view>
+    <view class='gender listItem'>
+      <text class='listLeft'>性别</text>
+      <text class='listRight' bindtap="editInfo" data-word="gender">
+        <text class='content'>{{fn.formatGender(gender)}}</text>
+        <text class='iconfont icon_next'></text>
+      </text>
+    </view>
+    <view class='divider'></view>
+    <view class='birth listItem'>
+      <text class='listLeft'>生日</text>
+      <text class='listRight' bindtap="editInfo" data-word="birthday">
+        <text class='content'>{{fn.formatBirthday(birthday)}}</text>
+        <text class='iconfont icon_next'></text>
+      </text>
+    </view>
+    <view class='divider'></view>
+    <view class='campus listItem'>
+      <text class='listLeft'>校区</text>
+      <text class='listRight' bindtap="editInfo" data-word="campus">
+        <text class='content'>{{fn.formatCampus(campus)}}</text>
+        <text class='iconfont icon_next'></text>
+      </text>
+    </view>
+  </view>
+</view>

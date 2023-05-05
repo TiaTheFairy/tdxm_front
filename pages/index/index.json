@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "sousuokuang":"../../components/search/sousuokuang"
+  },
+  "navigationBarTitleText": "暨大值得买"
+}

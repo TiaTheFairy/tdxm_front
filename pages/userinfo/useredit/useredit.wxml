@@ -1,0 +1,41 @@
+<view>
+  <view class='main'>
+    <view class='input'>
+      <view class='nickname' wx:if="{{editType=='nickname'}}">
+        <input name='nickname' placeholder="请输入新昵称" value='{{default}}' maxlength="10" bindinput='doneNick' bindconfirm='doneNick'	bindblur='doneNick'></input>
+      </view>
+      <view class='desc' wx:if="{{editType=='desc'}}">
+        <textarea name='desc' placeholder="简单做一下自我介绍吧~" value='{{default}}' maxlength="50" bindinput='doneDesc' bindconfirm='doneDesc' bindblur='doneDesc'></textarea>
+      </view>
+      <view class='gender' wx:if="{{editType=='gender'}}">
+        <radio-group name='gender' bindchange='doneGender'>
+          <radio :value='1' checked="{{default==1}}">男生</radio>
+          <radio :value='2' checked="{{default==2}}">女生</radio>
+          <radio :value='3' checked="{{default==0}}">保密</radio>
+        </radio-group>
+      </view>
+      <view class='birthday' wx:if="{{editType=='birthday'}}">
+        <picker name='day' mode='date' start="1995-01-01" end="2010-12-31" bindchange="doneBirthday">
+          <text class='timeItem'>{{default[0]}} 年</text>
+          <text class='timeItem'>{{default[1]}} 月</text>
+          <text class='timeItem'>{{default[2]}} 日</text>
+          <text class='selectorDropdown iconfont icon_drop'></text>
+        </picker>
+      </view>
+
+      <view class='campus' wx:if="{{editType=='campus'}}">
+        <picker name='campus' value='{{default}}' range='{{campusArray}}' bindchange="doneCampus">
+          <view class='campusSelector'>
+            <text class='campusValue'>{{campusArray[default]}}</text>
+            <text class='selectorDropdown iconfont icon_drop'></text>
+          </view>
+        </picker>
+      </view>
+    </view>
+
+    <view class='buttons'>
+      <button type='warn' size='mini' bindtap='cancel'>取消</button>
+      <button type='primary' size='mini' bindtap='save' disabled='{{disableSave}}'>保存</button>
+    </view>
+  </view>
+</view>

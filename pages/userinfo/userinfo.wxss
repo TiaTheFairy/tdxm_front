@@ -1,0 +1,48 @@
+@import "../../public/iconfont.wxss";
+/* .top{
+  width: 100%;
+  height: 28px;
+  border-top: 1px solid gray;
+  border-bottom: 1px solid gray;
+}
+.top .back{
+  margin-left: 5px;
+  margin-right: 10px;
+} */
+.divider{
+  width: 94%;
+  height: 1px;
+  background-color: rgb(3, 3, 3);
+  margin-left: 3%;
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
+.avatar{
+  margin-bottom: 50px;
+  text-align: center;
+  margin-top: 30px;
+}
+.picture{
+  border-radius: 1px solid black;
+  width: 100px;
+  height: 100px;
+  margin-left: 25px;
+}
+.camera{
+  position: relative;
+  top: 5px;
+  right: 15px;
+  font-size: 25px;
+}
+.listLeft{
+  margin-left: 6%;
+  font-size: 12px;
+}
+.listRight{
+  float: right;
+  margin-right: 6%;
+}
+.content{
+  font-size: 12px;
+  margin-right: 10px;
+}

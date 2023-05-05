@@ -1,0 +1,44 @@
+<view class="zdm_myclec">
+  <span class="iconfont icon_31fanhui1">我的收藏</span>
+  <span class="iconfont icon_xinzeng"></span>
+  
+  <view>
+    <sousuokuang>输入收藏商品名称</sousuokuang>
+    <button>搜索</button>
+  </view>
+
+  <view>
+    <text>排序方式</text>
+    <select name="ordermethod-c" id="">
+      <option>综合排序</option>
+      <option>点赞最高</option>
+      <option>人气最高</option>
+      <option>最新收藏</option>
+    </select>
+  </view>
+
+  <view>
+    <image src="" mode=""/>
+    <span class="iconfont icon_redu"></span>
+    <span class="iconfont icon_zanfill"></span>
+    <span class="iconfont icon_pinglun"></span>
+    <span class="iconfont icon_daohangshoucangyishoucang"></span>
+
+  </view>
+
+  <view>
+    <image src="" mode=""/>
+    <span class="iconfont icon_redu"></span>
+    <span class="iconfont icon_zanfill"></span>
+    <span class="iconfont icon_pinglun"></span>
+    <span class="iconfont icon_daohangshoucangyishoucang"></span>
+  </view>
+
+  <view>
+    <image src="" mode=""/>
+    <span class="iconfont icon_redu"></span>
+    <span class="iconfont icon_zanfill"></span>
+    <span class="iconfont icon_pinglun"></span>
+    <span class="iconfont icon_daohangshoucangyishoucang"></span>
+  </view>
+</view>

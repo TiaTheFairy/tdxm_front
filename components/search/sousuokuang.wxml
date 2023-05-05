@@ -1,0 +1,5 @@
+<view class="search">
+  <navigator>
+   输入商品名称或店铺名称
+  </navigator>
+</view>
