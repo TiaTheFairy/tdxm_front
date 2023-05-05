@@ -1,6 +1,11 @@
 {
   "pages": [
+    "pages/specifics/specifics",
+    "pages/user/user",
     "pages/index/index",
+    
+    "pages/new/new",
+    
     "pages/userinfo/userinfo",
     "pages/userinfo/useredit/useredit",
     "pages/myclec/myclec",
@@ -15,7 +20,7 @@
         "selectedIconPath": "public/assets/index_filled.png"
       },
       {
-        "pagePath": "pages/userinfo/userinfo",
+        "pagePath": "pages/user/user",
         "text":"我的",
         "iconPath": "public/assets/user.png",
         "selectedIconPath": "public/assets/user_filled.png"

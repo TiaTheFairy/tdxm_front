@@ -28,13 +28,6 @@
     }
   </wxs>
 
-  <!-- <view class='top'>
-    <text class='back'>
-      <text class='iconfont icon_back' bindtap="back"></text>
-    </text>
-    <text class='title'>个人资料</text>
-  </view> -->
-
   <view class='main'>
     <view class='avatar listItem'>
       <image class='picture' src="../../public/assets/placeholder.png"></image>

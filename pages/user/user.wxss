@@ -1,0 +1,61 @@
+@import "../../public/iconfont.wxss";
+
+.user{
+  width: 100%;
+  height: 80px;
+}
+
+.user .picture{
+  width: 80px;
+  height: 80px;
+  float: left;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.user .middle{
+  padding-top: 10px;
+}
+
+.name{
+  margin-bottom: 10px;
+}
+
+.id{
+  font-size: 13px;
+}
+
+.copy{
+  margin-left: 15px;
+}
+
+.user .right{
+  float: right;
+  position: relative;
+  top: -35px;
+  margin-right: 15px;
+}
+
+.list{
+  margin-top: 30px;
+}
+
+.list .item{
+  margin-top: 15px;
+  margin-bottom: 15px;
+  margin-left: 20px;
+}
+
+.item .right{
+  float: right;
+  margin-right: 20px;
+}
+
+.divider{
+  width: 94%;
+  height: 1px;
+  background-color: rgb(3, 3, 3);
+  margin-left: 3%;
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
