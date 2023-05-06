@@ -1,14 +1,12 @@
 {
   "pages": [
-    "pages/specifics/specifics",
-    "pages/user/user",
     "pages/index/index",
-    
     "pages/new/new",
-    
+    "pages/detail/detail",
+    "pages/user/user",
     "pages/userinfo/userinfo",
     "pages/userinfo/useredit/useredit",
-    "pages/myclec/myclec",
+    "pages/myfav/myfav",
     "pages/mypub/mypub"
   ],
   "tabBar":{

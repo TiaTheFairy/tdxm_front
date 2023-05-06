@@ -1,39 +1,37 @@
-<!--index.wxml-->
-<view class="itemView">
-    <view class="iconfont icon_9911" style="width: 60rpx; height: 72rpx; display: flex; box-sizing: border-box" bindtap="return"></view>
-    <text style="text-align: center; width: 639rpx; height: 72rpx; display: block; box-sizing: border-box">发布</text>
-</view>
+<view class='frame'>
+  <view class='pictureHolder'>
+      <!-- <image class='picture' src="../../public/assets/placeholder.png"></image> -->
+    <text class='pictureTip'>
+      <text class='camera iconfont icon_camera'></text>
+      <text class='pictureAdd'>插入图片</text>
+    </text>
+  </view>
 
-<view class="itemView">
-    <navigator url="" style="width: 750rpx; height: 312rpx; display: block; box-sizing: border-box">
-            <text class="name" style="position: relative; left: 312rpx; top: 120rpx">插入图片</text>
-    </navigator>
-</view>
+  <view class="goods">
+    <view class='name'>
+      <view class='title'>商品服务名称</view>
+      <input class='input' placeholder='请输入商品服务名称' bindinput='setupInputName' maxlength="10"/>
+    </view>
+    <view class='location'>
+      <view class='title'>商品服务店铺位置</view>
+      <input class='input' placeholder='请输入商品服务店铺位置' bindinput='setupInputLocation' maxlength="16"/>
+    </view>
+    <view class='price'>
+      <view class='title'>商品服务原价优惠价</view>
+      <view class='priceInputs'>
+        <input class='inputOld' placeholder='原价' bindinput='setupInputOldprice' type='digit'/>
+        <input class='inputNew' placeholder='优惠价' bindinput='setupInputNewprice' type='digit'/>
+      </view>
+    </view>
+    <view class='desc'>
+      <view class='title'>商品服务评价</view>
+      <textarea class='input' placeholder='请输入您的评价' bindinput='setupInputDesc'  maxlength="300"></textarea>
+    </view>
+  </view>
 
-<view class="itemView">商品服务名称：
-        <input class="input" name="goodsName" placeholder="请输入名称" 
-        bindinput="goodsNameInput"/>
-</view>
-
-<view class="itemView" style="position: relative; left: 0rpx; top: 25rpx">商品服务店铺位置：
-        <input class="input" name="goodsLocation" placeholder="请输入名称" 
-        bindinput="goodsLocationInput"/>
-</view>
-<view class="itemView" style="position: relative; left: -1rpx; top: 52rpx">商品服务原价及优惠价：
-    <view class="price">
-        <input class="input" name="goodsPrice" type="number" placeholder="原价"
-     bindinput="goodsPriceInput" />
-        <input class="input" name="goodsProfit" type="number" placeholder="优惠价"
-     bindinput="goodsProfitInput" />
-    </view>   
-</view>
-<view class="itemView" style="position: relative; left: 1rpx; top: 108rpx; width: 750rpx; height: 312rpx; display: block; box-sizing: border-box">商品服务评价：
-        <input style="width: 750rpx; height: 285rpx; display: block; box-sizing: border-box"  class="input" name="goodsJudge" placeholder="您的评价" 
-        bindinput="goodsJudgeInput"/>
-</view>
-
-<view class="viewName" >
-    <button class="sendBtn" type="primary" bindtap="sendBtnClick"  style="position: relative; left: 2rpx; top: 247rpx; width: 250rpx; height: 77rpx; display: block; box-sizing: border-box">发送</button>
+  <view class="submit" bindtap="confirmButton">
+    <button class='button'>发布</button>
+  </view>
 </view>
 
 

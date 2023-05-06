@@ -13,7 +13,7 @@ Page({
   },
   gotoFav(){
     wx.navigateTo({
-      url: '../myclec/myclec',
+      url: '../myfav/myfav',
     })
   },
   gotoPub(){

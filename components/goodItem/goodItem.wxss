@@ -1,0 +1,45 @@
+@import "../../public/iconfont.wxss";
+
+.item{
+  display: flex;
+  margin-right: 10px;
+}
+.left{
+  margin-left: 10px;
+  margin-right: 8px;
+}
+.picture{
+  width: 100px;
+  height: 100px;
+}
+.name{
+  font-size: 25px;
+  font-weight: bolder;
+}
+.location{
+  margin-top: 5px;
+  margin-bottom: 10px;
+}
+.status{
+  display: flex;
+}
+.status .item{
+  flex: 1;
+  width: 50px;
+}
+.status .fav{
+  position: relative;
+  left: -10px;
+  top: 1px;
+}
+.status .item .statusIcon{
+  font-size: 18px;
+}
+.divider{
+  width: 94%;
+  height: 1px;
+  background-color: rgba(124, 124, 124, 0.712);
+  margin-left: 3%;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}

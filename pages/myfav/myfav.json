@@ -2,5 +2,5 @@
   "usingComponents": {
     "goodItem": "../../components/goodItem/goodItem"
   },
-  "navigationBarTitleText": "暨大值得买 - 发布"
+  "navigationBarTitleText": "暨大值得买 - 收藏"
 }

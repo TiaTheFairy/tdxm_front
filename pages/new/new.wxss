@@ -1,14 +1,73 @@
 @import "../../public/iconfont.wxss";
 
-.itemView:nth-child(1){
-    display: flex;
-    flex-direction: row;
+.frame{
+  text-align: center;
 }
-.price{
-    display: flex;
-    flex-direction: row;
+.pictureHolder{
+  margin-bottom: 50px;
+  margin-top: 30px;
+  border: 1px solid gray;
+  width: 150px;
+  height: 150px;
+  margin-left: 80px;
 }
-.sendBtn{
-    border-radius: 10pt;
+.pictureTip{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
 }
-
+.pictureTip text{
+  display: block;
+}
+.camera{
+  font-size: 25px;
+  margin-bottom: 10px;
+}
+.goods{
+  text-align: left;
+}
+.goods .title{
+  margin-left: 20px;
+  margin-bottom: 5px;
+  margin-top: 10px;
+}
+.goods .input{
+  border: 1px solid rgba(128, 128, 128, 0.562);
+  border-radius: 5px;
+  width: 80%;
+  margin-left: 10%;
+  padding-left: 5px;
+}
+.goods .price .inputNew, .goods .price .inputOld{
+  border: 1px solid rgba(128, 128, 128, 0.562);
+  border-radius: 5px;
+  width: 35%;
+  padding-left: 5px;
+}
+.goods .price .inputOld{
+  float: left;
+  margin-left: 10%;
+}
+.goods .price .inputNew{
+  float: right;
+  margin-right: 10%;
+}
+.goods .desc{
+  margin-top: 40px;
+}
+.goods .desc textarea{
+  height: 100px;
+}
+.submit{
+  margin-top: 30px;
+  padding-bottom: 50px;
+}
+.submit .button{
+  background-color: rgb(70, 163, 70);
+  width: 30%;
+  font-size: 15px;
+  color: white;
+  border-radius: 10px;
+}

@@ -3,60 +3,56 @@
 var app = getApp()
 Page({
   data: {
-    infoMess:'',
-    goodsName:'',
-    goodsLocation:'',
-    goodsPrice: '',
-    goodsProfit:'',
-    goodsJudgeInput:''
+    name: '',
+    location: '',
+    oldprice: '',
+    newprice: '',
+    desc: ''
   },
-
-  goodsNameInput:function(e){
+  setupInputName(e){
     this.setData({
-        goodsName:e.detail.value
+      name: e.detail.value
     })
   },
-  goodsLocationInput:function(e){
+  setupInputLocation(e){
     this.setData({
-        goodsLocation:e.detail.value
+      location: e.detail.value
     })
   },
-  goodsPriceInput:function(e){
+  setupInputOldprice(e){
     this.setData({
-        goodsPrice:e.detail.value
+      oldprice: e.detail.value
     })
   },
-  goodsProfitInput:function(e){
+  setupInputNewprice(e){
     this.setData({
-        goodsProfit:e.detail.value
+      newprice: e.detail.value
     })
   },
-  goodsJudgeInput:function(e){
+  setupInputDesc(e){
     this.setData({
-        goodsJudge:e.detail.value
+      desc: e.detail.value
     })
   },
-
-  sendBtnClick:function(){
-    if(this.data.goodsName.length == 0 || this.data.goodsLocation.length == 0 || this.data.goodsPrice.length == 0 || this.data.goodsProfit.length == 0 || this.data.goodsJudge.length == 0){
-      this.setData({
-        infoMess:'温馨提示：输入不能为空！',
-      })
-    }else{
-      this.setData({
-        infoMess:'',
-        goodsName:'商品服务名称：'+this.data.goodsName,
-        goodsLocation:'商品服务店铺位置：'+this.data.goodsLocation,
-        goodsPrice:'商品服务原价及优惠价：'+this.data.goodsPrice,
-        goodsProfit:'商品服务原价及优惠价：'+this.data.goodsProfit,
-        goodsJudge:'商品服务评价：'+this.data.goodsJudge
-      })
-    }
-  },
-
-  onLoad: function () {
-    console.log('onLoad')
-    var that = this
-    //调用应用实例的方法获取全局数据
+  confirmButton(){
+    console.log(this.data.name, this.data.location, this.data.oldprice, this.data.newprice, this.data.desc);
   }
+
+
+  // sendBtnClick:function(){
+  //   if(this.data.goodsName.length == 0 || this.data.goodsLocation.length == 0 || this.data.goodsPrice.length == 0 || this.data.goodsProfit.length == 0 || this.data.goodsJudge.length == 0){
+  //     this.setData({
+  //       infoMess:'温馨提示：输入不能为空！',
+  //     })
+  //   }else{
+  //     this.setData({
+  //       infoMess:'',
+  //       goodsName:'商品服务名称：'+this.data.goodsName,
+  //       goodsLocation:'商品服务店铺位置：'+this.data.goodsLocation,
+  //       goodsPrice:'商品服务原价及优惠价：'+this.data.goodsPrice,
+  //       goodsProfit:'商品服务原价及优惠价：'+this.data.goodsProfit,
+  //       goodsJudge:'商品服务评价：'+this.data.goodsJudge
+  //     })
+  //   }
+  // },
 })

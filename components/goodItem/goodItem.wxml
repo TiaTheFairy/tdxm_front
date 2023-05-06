@@ -1,0 +1,49 @@
+<view>
+  <wxs module="fn">
+    module.exports = {
+      formatName: function(name){
+        if(name.length > 7){
+          return name.substring(0,7) + '...';
+        }
+        else return name;
+      },
+      formatLocation: function(location){
+        if(location.length> 11){
+          return location.substring(0,11) + '...';
+        }
+        else return location;
+      }
+    }
+  </wxs>
+
+  <view class='item' bindtap='gotoDetail'>
+    <view class='left'>
+      <image class='picture' src="../../public/assets/placeholder.png"></image>
+    </view>
+    <view class='infos'>
+      <view class='name'>{{fn.formatName(name)}}</view>
+      <view class='location'>{{fn.formatLocation(location)}}</view>
+      <view class='status'>
+        <view class='hot item'>
+          <text class='statusIcon iconfont icon_hot'></text>
+          <text class='statusNum'>{{hot}}</text>
+        </view>
+        <view class='votes item'>
+          <text class='statusIcon iconfont icon_like'></text>
+          <text class='statusNum'>{{votes}}</text>
+        </view>
+        <view class='comments item'>
+          <text class='statusIcon iconfont icon_comment'></text>
+          <text class='statusNum'>{{comments}}</text>
+        </view>
+        <view class='fav item'>
+          <text class='statusIcon iconfont icon_faved' wx:if="{{fav}}"></text>
+          <text class='statusIcon iconfont icon_fav' wx:else=""></text>
+        </view>
+      </view>
+    </view>
+  
+  </view>
+
+  <view class='divider'></view>
+</view>

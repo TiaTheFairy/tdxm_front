@@ -1,40 +1,35 @@
-<view class="zdm_index">
-  <sousuokuang>输入商品名称或店铺名称</sousuokuang>
-  <view>
-    <form>
-      <text>排序依据</text>
-      <select name="ordermethod" id="">
-        <option>推荐时间</option>
-        <option>点赞</option>
-        <option>收藏</option>
-      </select>
-      <button>搜索</button>
-    </form>
+<view>
+  <view class='topbar'>
+    <view class="search">
+      <text class='searchIcon iconfont icon_search'></text> 
+      <input class="searchInput" placeholder="请输入搜索内容" bindinput="onInput" />
+      <text class='clearIcon iconfont icon_clear'></text>
+    </view>
+    <view class='order'>
+      <view class='orderText'>排序依据</view>
+      <view class='pickerHolder'>
+        <picker class='picker' mode='selector' range="{{orderFunctions}}" bindchange="changeOrderFunction">
+          <text class='pickerItem'>{{orderFunctions[orderBy]}}</text>
+          <text class='selectorDropdown iconfont icon_drop'></text>
+        </picker>
+      </view>
+      <view class='searchButton'>
+        <button class='button'>
+          <text>搜索</text>
+        </button>
+      </view>
+    </view>
   </view>
-  
-  <view>
-    <view>
-      <image src="" mode=""/>
-      <span class="iconfont icon_redu"></span>
-      <span class="iconfont icon_zanfill"></span>
-      <span class="iconfont icon_pinglun"></span>
-      <span class="iconfont icon_daohangshoucangyishoucang"></span>
-    </view>
 
-    <view>
-      <image src="" mode=""/>
-      <span class="iconfont icon_redu"></span>
-      <span class="iconfont icon_zanfill"></span>
-      <span class="iconfont icon_pinglun"></span>
-      <span class="iconfont icon_daohangshoucangyishoucang"></span>
-    </view>
+  <view class='list' wx:for="{{list}}">
+    <goodItem name='{{item.name}}' location='{{item.location}}' hot='{{item.hot}}' votes='{{item.votes}}' comments='{{item.comments}}' fav='{{item.fav}}'></goodItem>
+  </view>
 
-    <view>
-      <image src="" mode=""/>
-      <span class="iconfont icon_redu"></span>
-      <span class="iconfont icon_zanfill"></span>
-      <span class="iconfont icon_pinglun"></span>
-      <span class="iconfont icon_daohangshoucangyishoucang"></span>
-    </view>
+  <view class='floatButtons'>
+    <view class='floatButton iconfont icon_top' bindtap="gotoTop"></view>
+    <view class='floatButton iconfont icon_refresh'></view>
+    <view class='floatButton iconfont icon_new' bindtap="gotoNew"></view>
   </view>
 </view>
+
+

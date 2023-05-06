@@ -1,8 +1,9 @@
+/* CDN 服务仅供平台体验和调试使用，平台不承诺服务的稳定性，企业客户需下载字体包自行发布使用并做好备份。 */
 @font-face {
   font-family: 'iconfont';  /* Project id 4045549 */
-  src: url('//at.alicdn.com/t/c/font_4045549_ukg226u42sn.woff2?t=1683211328730') format('woff2'),
-       url('//at.alicdn.com/t/c/font_4045549_ukg226u42sn.woff?t=1683211328730') format('woff'),
-       url('//at.alicdn.com/t/c/font_4045549_ukg226u42sn.ttf?t=1683211328730') format('truetype');
+  src: url('//at.alicdn.com/t/c/font_4045549_foc682bavi.woff2?t=1683348891548') format('woff2'),
+       url('//at.alicdn.com/t/c/font_4045549_foc682bavi.woff?t=1683348891548') format('woff'),
+       url('//at.alicdn.com/t/c/font_4045549_foc682bavi.ttf?t=1683348891548') format('truetype');
 }
 .iconfont {
   font-family: "iconfont" !important;
@@ -38,9 +39,29 @@
 .icon_fav::before{
   content: "\e627"
 }
+.icon_faved::before{
+  content: "\e9ef";
+  color: red;
+  font-size: 23px;
+}
 .icon_comment::before{
   content: "\e654"
 }
 .icon_link::before{
   content: "\e61b"
+}
+.icon_clear::before{
+  content: "\e8df"
+}
+.icon_search::before{
+  content: "\e8b8"
+}
+.icon_top::before{
+  content: "\e602"
+}
+.icon_refresh::before{
+  content: "\e615"
+}
+.icon_new::before{
+  content: "\e7e4"
 }

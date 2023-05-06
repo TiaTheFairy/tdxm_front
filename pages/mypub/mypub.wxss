@@ -1,1 +1,65 @@
-/* pages/mypub/mypub.wxss */
+@import "../../public/iconfont.wxss";
+
+.search {
+  width: 85%;
+  margin-left: 5%;
+  display: flex;
+  align-items: center;
+  padding-left: 9px;
+  padding-right: 9px;
+  border: 1px solid rgba(128, 128, 128, 0.452);
+  border-radius: 8px;
+}
+.searchInput {
+  flex: 1;
+  font-size: 13px;
+}
+.searchIcon{
+  margin-right: 5px;
+}
+.order{
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+.pickerHolder {
+  border: 1px solid rgba(128, 128, 128, 0.623);
+  border-radius: 10px;
+  width: 20%;
+  height: 20px;
+  margin-right: 35px;
+  padding-left: 8px;
+}
+.picker {
+  width: 120px;
+  height: 100%;
+}
+.pickerItem {
+  font-size: 16px;
+  color: #333;
+}
+.searchButton .button{
+  width: 80px;
+  height: 23px;
+  font-size: 15px;
+  background-color: rgb(120, 209, 167);
+  color: white;
+}
+.searchButton .button text{
+  position: relative;
+  top: -6px;
+}
+.floatButtons {
+  position: fixed;
+  bottom: 0;
+  right: 10px;
+}
+.floatButton{
+  margin-bottom: 20px;
+  border: 1px solid gray;
+  border-radius: 50%;
+  background-color: #fff;
+  font-size: 25px;
+  padding: 5px;
+}

@@ -1,6 +1,6 @@
 {
   "usingComponents": {
-    "sousuokuang":"../../components/search/sousuokuang"
+    "goodItem":"../../components/goodItem/goodItem"
   },
   "navigationBarTitleText": "暨大值得买"
 }
