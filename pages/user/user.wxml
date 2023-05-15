@@ -5,7 +5,7 @@
     </view>
     <view class='middle'>
       <view class='name'>{{nickname}}</view>
-      <view class='id'>
+      <view class='id' bindtap="copyID">
         <text>ID: {{id}}</text>
         <text class='copy iconfont icon_copy'></text>
       </view>

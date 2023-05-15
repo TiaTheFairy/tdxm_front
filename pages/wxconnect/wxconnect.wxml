@@ -1,0 +1,15 @@
+<view>
+  <view class='title'>暨大值得买</view>
+
+  <view class='desc'>
+    <view class='descItem'>最新好价</view>
+    <view class='descItem'> | </view>
+    <view class='descItem'>超值优惠</view>
+    <view class='descItem'> | </view>
+    <view class='descItem'>分享发布</view>
+  </view>
+
+  <view>
+    <button class='button' type='primary' bindtap='userLogin'>微信登陆</button>
+  </view>
+</view>

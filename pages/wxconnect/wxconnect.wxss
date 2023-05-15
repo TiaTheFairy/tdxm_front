@@ -1,0 +1,13 @@
+.title{
+  text-align: center;
+  font-size: 30px;
+  margin-top: 30px;
+  margin-bottom: 50px;
+}
+.desc{
+  display: flex;
+  justify-content: space-evenly;
+}
+.button{
+  margin-top: 50px;
+}

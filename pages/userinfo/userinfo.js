@@ -6,10 +6,6 @@ Page({
     birthday: [2002,3,1],
     campus: 2
   },
-
-  back(){
-    wx.navigateBack()
-  },
   editInfo(e){
     var params = {
       t: e.currentTarget.dataset.word,
@@ -62,28 +58,12 @@ Page({
       // }
     })
   },
-  onLoad(options) {
-
+  getUserInfo(){
+    wx.request({
+      url: 'url',
+    })
   },
-  onReady() {
-
+  onLoad() {
+    // getUserInfo()
   },
-  onShow() {
-
-  },
-  onHide() {
-
-  },
-  onUnload() {
-
-  },
-  onPullDownRefresh() {
-
-  },
-  onReachBottom() {
-
-  },
-  onShareAppMessage() {
-
-  }
 })

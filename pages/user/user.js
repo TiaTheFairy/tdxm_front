@@ -20,5 +20,23 @@ Page({
     wx.navigateTo({
       url: '../mypub/mypub',
     })
+  },
+  copyID(){
+    wx.setClipboardData({
+      data: this.data.id.toString(),
+      success: function(res) {
+        wx.showToast({
+          title: '复制成功',
+        })
+      }
+    })
+  },
+  getUserInfo(){
+    wx.request({
+      url: 'url',
+    })
+  },
+  onLoad(){
+    // this.getUserInfo()
   }
 })

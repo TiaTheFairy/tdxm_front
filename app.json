@@ -1,6 +1,7 @@
 {
   "pages": [
     "pages/index/index",
+    "pages/wxconnect/wxconnect",
     "pages/new/new",
     "pages/detail/detail",
     "pages/user/user",
@@ -9,17 +10,17 @@
     "pages/myfav/myfav",
     "pages/mypub/mypub"
   ],
-  "tabBar":{
-    "list":[
+  "tabBar": {
+    "list": [
       {
-        "pagePath":"pages/index/index",
-        "text":"首页",
+        "pagePath": "pages/index/index",
+        "text": "首页",
         "iconPath": "public/assets/index.png",
         "selectedIconPath": "public/assets/index_filled.png"
       },
       {
         "pagePath": "pages/user/user",
-        "text":"我的",
+        "text": "我的",
         "iconPath": "public/assets/user.png",
         "selectedIconPath": "public/assets/user_filled.png"
       }

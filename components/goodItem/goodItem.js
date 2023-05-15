@@ -1,12 +1,13 @@
 // components/goodItem/goodItem.js
 Component({
   properties: {
-    name: '',
-    location:'',
-    hot: '',
-    votes: '',
-    comments: '',
-    fav: false
+    postid: {type:Number, value: 0},
+    name: {type: String, value: ''},
+    location: {type: String, value: ''},
+    hot: {type: Number, value: 0},
+    votes: {type: Number, value: 0},
+    comments: {type: Number, value: 0},
+    fav: {type: Boolean, value: false},
   },
   data: {
 
@@ -14,8 +15,9 @@ Component({
   methods: {
     gotoDetail(){
       wx.navigateTo({
-        url: '../../pages/detail/detail',
+        url: '../../pages/detail/detail?id=' + this.properties.postid,
+        
       })
     }
-  }
+  },
 })
