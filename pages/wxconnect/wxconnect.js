@@ -1,25 +1,47 @@
-// pages/wxconnect/wxconnect.js
+import * as server from '../../server.js'
+var app = getApp()
 Page({
   data: {
     src: '',
     name: 'hello'
   },
-  onLoad(){
-    //自动登录
-  },
-  autoLogin(){
-
-  },
   userLogin(){
+    let profile;
     wx.getUserProfile({
-      desc: '获取信息',
+      desc: '授权微信资料',
       success:(res)=>{
-        console.log(res);
+        console.log(res.userInfo);
+        profile = res.userInfo;
 
-        //注册
-        //保存本地cookie
-        wx.switchTab({
-          url: '../index/index',
+        wx.request({
+          url: 'server.default.getUser',
+          method: 'POST',
+          data:{
+            wxid: app.globalData.wxid
+          },
+          success:(res)=>{
+            if(res.status == 'FAIL_NOMATCH'){
+              wx.request({
+                url: 'server.default.createUser',
+                method: 'POST',
+                data:{
+                  wxid: app.globalData.wxid,
+                  username: profile.nickName,
+                  avatar: profile.avatarUrl
+                },
+                success:(res)=>{
+                  wx.navigateTo({
+                    url: '../index/index',
+                  })
+                }
+              })
+            }
+            else{
+              wx.navigateTo({
+                url: '../index/index',
+              })
+            }
+          }
         })
       }
     })

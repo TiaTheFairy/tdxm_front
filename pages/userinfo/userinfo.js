@@ -1,5 +1,8 @@
+import * as server from '../../server.js'
+var app = getApp()
 Page({
   data: {
+    id: 123456,
     nickname: "这是我的昵称",
     desc: "这是我的简介这是我的简介这是我的简介这是我的简介这是我的简介",
     gender: 0,
@@ -60,7 +63,21 @@ Page({
   },
   getUserInfo(){
     wx.request({
-      url: 'url',
+      url: server.default.getUser,
+      method: 'POST',
+      data:{
+        wxid: app.globalData.wxid
+      },
+      success:(res)=>{
+        this.setData({
+          id: res.data.userid,
+          nickname: res.data.username,
+          desc: res.data.desc,
+          gender: res.data.gender,
+          campus: res.data.campus,
+          birthday: res.data.birthday
+        })
+      }
     })
   },
   onLoad() {

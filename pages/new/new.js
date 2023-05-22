@@ -1,5 +1,4 @@
-// index.js
-//获取应用实例
+import * as server from '../../server.js'
 var app = getApp()
 Page({
   data: {
@@ -36,23 +35,17 @@ Page({
   },
   confirmButton(){
     console.log(this.data.name, this.data.location, this.data.oldprice, this.data.newprice, this.data.desc);
+    wx.request({
+      url: server.default.createPost,
+      method: 'POST',
+      data:{
+        name: this.data.name,
+        location: this.data.location,
+        oldprice: this.data.oldprice,
+        newprice: this.data.newprice,
+        desc: this.data.desc,
+        postID: app.globalData.wxid
+      }
+    })
   }
-
-
-  // sendBtnClick:function(){
-  //   if(this.data.goodsName.length == 0 || this.data.goodsLocation.length == 0 || this.data.goodsPrice.length == 0 || this.data.goodsProfit.length == 0 || this.data.goodsJudge.length == 0){
-  //     this.setData({
-  //       infoMess:'温馨提示：输入不能为空！',
-  //     })
-  //   }else{
-  //     this.setData({
-  //       infoMess:'',
-  //       goodsName:'商品服务名称：'+this.data.goodsName,
-  //       goodsLocation:'商品服务店铺位置：'+this.data.goodsLocation,
-  //       goodsPrice:'商品服务原价及优惠价：'+this.data.goodsPrice,
-  //       goodsProfit:'商品服务原价及优惠价：'+this.data.goodsProfit,
-  //       goodsJudge:'商品服务评价：'+this.data.goodsJudge
-  //     })
-  //   }
-  // },
 })

@@ -79,9 +79,25 @@
     <view class='right' bindtap="switchLinkPop">
       <text class='icon iconfont icon_link'></text>
     </view>
+    <view class='admin' bindtap="switchAdminPop" wx:if="{{isAdmin}}">
+      <text class='iconfont icon_menu'></text>
+    </view>
   </view>
 
   <view class='commentPop' wx:if="{{showCommentsPop}}">评论区</view>
 
   <view class='linkPop' wx:if="{{showLinkPop}}">表格区</view>
+
+  <view class='adminPop' wx:if='{{showAdminPop}}'>
+    <view>
+      <text class='icon iconfont icon_delete'></text>
+      <text class='text' bindtap="deletePost">删除</text>
+    </view> 
+    <view class='divider'></view>
+    <view>
+      <text class='icon iconfont icon_highlight'></text>
+      <text class='text' bindtap='highlightPost'>加精</text>
+    </view>
+  </view>
+  <view class='adminPopOverlay' wx:if='{{showAdminPop}}' bindtap="switchAdminPop"></view>
 </view>

@@ -1,3 +1,5 @@
+import * as server from '../../server.js'
+var app = getApp()
 Page({
   data: {
     searchInput: '',
@@ -84,9 +86,9 @@ Page({
     var orderLists = ["time", "hot", "upvote"]
     this.getList(this.data.searchInput, orderLists[this.data.orderBy]);
   },
-  getList(keyword, order){
+  getList(keyword='', order='time'){
     wx.request({
-      url: '',
+      url: server.default.getListIndex,
       method: 'POST',
       data:{
         keyword: keyword,
@@ -107,7 +109,32 @@ Page({
       }
     })
   },
+  getHighlight(){
+    wx.request({
+      url: server.default.getListHighlight,
+      method: 'POST',
+      data:{},
+      success:(res)=>{
+        if(res.data.list.length == 0){
+          this.getList();
+        }
+        else{
+          this.setData({
+            listEmpty: false,
+            list: res.data.list
+          })
+        }
+      }
+    })
+  },
   onLoad(){
-    //this.getList();
+    if(!app.globalData.wxid || app.globalData.wxid == -1){
+      // wx.navigateTo({
+      //   url: '/pages/wxconnect/wxconnect',
+      // })
+    }
+    else{
+       //this.getHighlight();
+    }
   }
 })

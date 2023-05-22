@@ -1,5 +1,4 @@
-// user.js
-//获取应用实例
+import * as server from '../../server.js'
 var app = getApp()
 Page({
   data: {
@@ -33,7 +32,17 @@ Page({
   },
   getUserInfo(){
     wx.request({
-      url: 'url',
+      url: server.default.getUser,
+      method: 'POST',
+      data:{
+        wxid: app.globalData.wxid
+      },
+      success:(res)=>{
+        this.setData({
+          id: res.data.userid,
+          username: res.data.username
+        })
+      }
     })
   },
   onLoad(){

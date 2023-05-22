@@ -1,3 +1,5 @@
+import * as server from '../../../server.js'
+var app = getApp()
 Page({
   data: {
     editType: "",
@@ -6,7 +8,6 @@ Page({
     campusArray: ["石牌校区","番禺校区","珠海校区","深圳校区"],
     disableSave: true
   },
-  
   bindDateChange: function(e) {
     console.log('picker发送选择改变，携带值为', e.detail.value)
     this.setData({
@@ -19,11 +20,24 @@ Page({
     })
   },
   save(){
-    // this.getOpenerEventChannel.emit('userEdit', this.data.newData)
+    wx.request({
+      url: server.default.updateUser,
+      method: 'POST',
+      data:{
+        wxid: app.globalData.wxid,
+        username: this.data.editType == 'nickname' ? newData : '',
+        desc: this.data.editType == 'desc' ? newData : '',
+        gender: this.data.editType == 'gender' ? newData : -1,
+        campus: this.data.editType == 'campus' ? newData : -1,
+        birthdya: this.data.editType == 'birthday' ? newData : [0,0,0],
+      },
+      success:(res)=>{
+        console.log('updated!');
+        // this.getOpenerEventChannel.emit('userEdit', this.data.newData)
+      }
+    })
   },
   doneNick(e){
-    //检查昵称占用情况
-
     this.setData({
       newData: e.detail.value,
       disableSave: false

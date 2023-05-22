@@ -1,3 +1,5 @@
+import * as server from '../../server.js'
+var app = getApp()
 Page({
   data: {
     searchInput: '',
@@ -29,27 +31,16 @@ Page({
       orderBy: e.detail.value
     });
   },
-  gotoNew(){
-    wx.navigateTo({
-      url: '../new/new',
-    })
-  },
-  gotoTop(){
-    wx.pageScrollTo({
-      duration: 250,
-      scrollTop:0
-    })
-  },
   searchList(){
     var orderLists = ["time", "hot", "upvote"]
     this.getList(this.data.searchInput, orderLists[this.data.orderBy]);
   },
-  getList(keyword, order){
+  getList(keyword='', order='time'){
     wx.request({
-      url: '',
+      url: server.default.getListPub,
       method: 'POST',
       data:{
-        user: 0,
+        wxid: app.globalData.wxid,
         keyword: keyword,
         order: order
       },
