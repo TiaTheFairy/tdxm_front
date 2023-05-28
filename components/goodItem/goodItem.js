@@ -16,7 +16,6 @@ Component({
     gotoDetail(){
       wx.navigateTo({
         url: '../../pages/detail/detail?id=' + this.properties.postid,
-        
       })
     }
   },

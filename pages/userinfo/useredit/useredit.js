@@ -25,11 +25,11 @@ Page({
       method: 'POST',
       data:{
         wxid: app.globalData.wxid,
-        username: this.data.editType == 'nickname' ? newData : '',
-        desc: this.data.editType == 'desc' ? newData : '',
-        gender: this.data.editType == 'gender' ? newData : -1,
-        campus: this.data.editType == 'campus' ? newData : -1,
-        birthdya: this.data.editType == 'birthday' ? newData : [0,0,0],
+        username: this.data.editType == 'nickname' ? this.data.newData : '',
+        desc: this.data.editType == 'desc' ? this.data.newData : '',
+        gender: this.data.editType == 'gender' ? this.data.newData : -1,
+        campus: this.data.editType == 'campus' ? this.data.newData : -1,
+        birthdya: this.data.editType == 'birthday' ? this.data.newData : [0,0,0],
       },
       success:(res)=>{
         console.log('updated!');

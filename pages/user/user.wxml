@@ -1,16 +1,16 @@
 <view>
-  <view class='user'>
+  <view class='user' bindtap="gotoUserinfo">
     <view class='left'>
       <image class='picture' src="../../public/assets/user.png"></image>
     </view>
     <view class='middle'>
       <view class='name'>{{nickname}}</view>
-      <view class='id' bindtap="copyID">
+      <view class='id' catchtap="copyID">
         <text>ID: {{id}}</text>
         <text class='copy iconfont icon_copy'></text>
       </view>
     </view>
-    <view class='right' bindtap="gotoUserinfo">
+    <view class='right'>
       <text class='iconfont icon_next'></text>
     </view>
   </view>
