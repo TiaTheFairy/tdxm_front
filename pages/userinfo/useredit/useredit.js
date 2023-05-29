@@ -25,11 +25,8 @@ Page({
       method: 'POST',
       data:{
         wxid: app.globalData.wxid,
-        username: this.data.editType == 'nickname' ? this.data.newData : '',
-        desc: this.data.editType == 'desc' ? this.data.newData : '',
-        gender: this.data.editType == 'gender' ? this.data.newData : -1,
-        campus: this.data.editType == 'campus' ? this.data.newData : -1,
-        birthdya: this.data.editType == 'birthday' ? this.data.newData : [0,0,0],
+        type: this.data.editType,
+        changedData: this.data.newData
       },
       success:(res)=>{
         console.log('updated!');
@@ -77,24 +74,4 @@ Page({
       default: params.d,
     })
   },
-  onReady() {
-  },
-  onShow() {
-
-  },
-  onHide() {
-
-  },
-  onUnload() {
-
-  },
-  onPullDownRefresh() {
-
-  },
-  onReachBottom() {
-
-  },
-  onShareAppMessage() {
-
-  }
 })

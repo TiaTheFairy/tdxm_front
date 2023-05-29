@@ -75,7 +75,7 @@ Page({
           desc: res.data.desc,
           gender: res.data.gender,
           campus: res.data.campus,
-          birthday: res.data.birthday
+          birthday: JSON.parse(res.data.birthday)
         })
       }
     })

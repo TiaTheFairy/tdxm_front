@@ -9,9 +9,9 @@
       </view>
       <view class='gender' wx:if="{{editType=='gender'}}">
         <radio-group name='gender' bindchange='doneGender'>
-          <radio :value='1' checked="{{default==1}}">男生</radio>
-          <radio :value='2' checked="{{default==2}}">女生</radio>
-          <radio :value='3' checked="{{default==0}}">保密</radio>
+          <radio value='1' checked="{{default==1}}">男生</radio>
+          <radio value='2' checked="{{default==2}}">女生</radio>
+          <radio value='0' checked="{{default==0}}">保密</radio>
         </radio-group>
       </view>
       <view class='birthday' wx:if="{{editType=='birthday'}}">
