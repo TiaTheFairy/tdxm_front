@@ -13,6 +13,11 @@ Page({
         console.log(res.userInfo);
         profile = res.userInfo;
 
+        wx.showLoading({
+          title: '加载中',
+          mask: true
+        })
+
         wx.request({
           url: 'server.default.getUser',
           method: 'POST',
@@ -20,6 +25,7 @@ Page({
             wxid: app.globalData.wxid
           },
           success:(res)=>{
+            wx.hideLoading()
             if(res.status == 'FAIL_NOMATCH'){
               wx.request({
                 url: 'server.default.createUser',

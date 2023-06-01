@@ -44,6 +44,11 @@ Page({
     this.getList(this.data.searchInput, orderLists[this.data.orderBy]);
   },
   getList(keyword='', order='time'){
+    wx.showLoading({
+      title: '加载中',
+      mask: true
+    })
+
     wx.request({
       url: server.default.getListFav,
       method: 'POST',
@@ -53,6 +58,7 @@ Page({
         order: order
       },
       success:(res)=>{
+        wx.hideLoading()
         if(res.data.list.length == 0){
           this.setData({
             listEmpty: true
@@ -68,6 +74,6 @@ Page({
     })
   },
   onLoad(){
-    //this.getList();
+    this.getList();
   }
 })

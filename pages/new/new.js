@@ -6,7 +6,7 @@ Page({
     location: '',
     oldprice: '',
     newprice: '',
-    desc: ''
+    desc: '',
   },
   setupInputName(e){
     this.setData({
@@ -28,13 +28,44 @@ Page({
       newprice: e.detail.value
     })
   },
+  insertPic(){
+    wx.showLoading({
+      title: '加载中',
+      mask: true
+    })
+
+    var fs = wx.getFileSystemManager()
+    wx.chooseImage({
+      count: 1,
+      sizeType: ['compressed'],
+      sourceType: ['album', 'camera'],
+      success: (res)=>{
+        wx.request({
+          url: server.default.uploadPic,
+          method: 'POST',
+          data:{
+            type: 'post',
+            id: app.globalData.wxid,
+            file: fs.readFileSync(res.tempFilePaths[0])
+          },
+          success:(res)=>{
+            wx.hideLoading()
+          }
+        })
+      }
+    })
+  },
   setupInputDesc(e){
     this.setData({
       desc: e.detail.value
     })
   },
   confirmButton(){
-    console.log(this.data.name, this.data.location, this.data.oldprice, this.data.newprice, this.data.desc);
+    wx.showLoading({
+      title: '加载中',
+      mask: true
+    })
+
     wx.request({
       url: server.default.createPost,
       method: 'POST',
@@ -45,6 +76,12 @@ Page({
         newprice: this.data.newprice,
         desc: this.data.desc,
         postID: app.globalData.wxid
+      },
+      success:(res)=>{
+        wx.hideLoading()
+        wx.navigateTo({
+          url: '../../pages/detail/detail?id=' + res.data.postid,
+        })
       }
     })
   }

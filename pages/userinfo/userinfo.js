@@ -61,7 +61,39 @@ Page({
       // }
     })
   },
+  changeAvatar(){
+    wx.showLoading({
+      title: '加载中',
+      mask: true
+    })
+
+    var fs = wx.getFileSystemManager()
+    wx.chooseImage({
+      count: 1,
+      sizeType: ['compressed'],
+      sourceType: ['album', 'camera'],
+      success: (res)=>{
+        wx.request({
+          url: server.default.uploadPic,
+          method: 'POST',
+          data:{
+            type: 'user',
+            id: this.data.id,
+            file: fs.readFileSync(res.tempFilePaths[0])
+          },
+          success:(res)=>{
+            wx.hideLoading()
+          }
+        })
+      }
+    })
+  },
   getUserInfo(){
+    wx.showLoading({
+      title: '加载中',
+      mask: true
+    })
+
     wx.request({
       url: server.default.getUser,
       method: 'POST',
@@ -69,6 +101,7 @@ Page({
         wxid: app.globalData.wxid
       },
       success:(res)=>{
+        wx.hideLoading()
         this.setData({
           id: res.data.userid,
           nickname: res.data.username,

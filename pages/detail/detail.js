@@ -95,6 +95,11 @@ Page({
     }
   },
   createComment(){
+    wx.showLoading({
+      title: '加载中',
+      mask: true
+    })
+
     wx.request({
       url: server.default.createComment,
       method: 'POST',
@@ -104,11 +109,19 @@ Page({
         content: this.data.commentInput
       },
       success:(res)=>{
-        if(res.data.status == 'COMPLETE') this.getPostDetail();
+        wx.hideLoading()
+        if(res.data.status == 'COMPLETE') {
+          this.getPostDetail();
+        }
       }
     })
   },
   createVote(e){
+    wx.showLoading({
+      title: '加载中',
+      mask: true
+    })
+
     wx.request({
       url: server.default.createVote,
       method: 'POST',
@@ -118,7 +131,11 @@ Page({
         vote: e.currentTarget.dataset['vote']
       },
       success:(res)=>{
-        if(res.data.status == 'COMPLETE') this.getPostDetail();
+        wx.hideLoading()
+        if(res.data.status == 'COMPLETE') 
+        {
+          this.getPostDetail();
+        }
       }
     })
   },
@@ -129,6 +146,11 @@ Page({
       content:'删除后, 内容不可恢复',
       success:function(res){
         if(res.confirm){
+          wx.showLoading({
+            title: '加载中',
+            mask: true
+          })
+
           wx.request({
             url: server.default.deletePost,
             method: 'POST',
@@ -137,6 +159,7 @@ Page({
               wxid: app.globalData.wxid,
             },
             success:(res)=>{
+              wx.hideLoading()
               if(res.data.status == 'COMPLETE'){
                 that.setData({
                   showAdminPop: false,
@@ -170,6 +193,11 @@ Page({
     })
   },
   createFav(){
+    wx.showLoading({
+      title: '加载中',
+      mask: true
+    })
+
     wx.request({
       url: server.default.createFav,
       method: 'POST',
@@ -178,11 +206,19 @@ Page({
         wxid: app.globalData.wxid,
       },
       success:(res)=>{
-        console.log('success fav');
+        wx.hideLoading()
+        this.setData({
+          fav: !this.data.fav
+        })
       }
     })
   },
   getPostDetail(){
+    wx.showLoading({
+      title: '加载中',
+      mask: true
+    })
+
     wx.request({
       url: server.default.getPostDetail,
       method: 'POST',
@@ -213,6 +249,7 @@ Page({
             wxid: app.globalData.wxid,
           },
           success:(res)=>{
+            wx.hideLoading()
             if(res.data.userid == app.data.posterID){
               this.setData({
                 isOwner: true
@@ -316,7 +353,7 @@ Page({
   onLoad(options){
     wx.nextTick(()=>{
       this.getAdmin();
-      this.getPostDetail();
+      // this.getPostDetail();
     })
   }
 })

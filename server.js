@@ -22,7 +22,10 @@ let servers = {
   getListFav:mainserver+'/getListFav',
   getListPub:mainserver+'/getListPub',
 
-  createFav:mainserver+'/createFav'
+  createFav:mainserver+'/createFav',
+
+  uploadPic: mainserver+'/uploadPic',
+  deletePic: mainserver+'/deletePic'
 }
 
 export default servers;

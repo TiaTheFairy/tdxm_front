@@ -20,6 +20,11 @@ Page({
     })
   },
   save(){
+    wx.showLoading({
+      title: '加载中',
+      mask: true
+    })
+
     wx.request({
       url: server.default.updateUser,
       method: 'POST',
@@ -29,7 +34,7 @@ Page({
         changedData: this.data.newData
       },
       success:(res)=>{
-        console.log('updated!');
+        wx.hideLoading()
         // this.getOpenerEventChannel.emit('userEdit', this.data.newData)
       }
     })

@@ -29,7 +29,7 @@
   </wxs>
 
   <view class='main'>
-    <view class='avatar listItem'>
+    <view class='avatar listItem' bindtap='changeAvatar'>
       <image class='picture' src="../../public/assets/placeholder.png"></image>
       <text class='camera iconfont icon_camera'></text>
     </view>

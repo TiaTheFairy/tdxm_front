@@ -1,5 +1,5 @@
 <view class='frame'>
-  <view class='pictureHolder'>
+  <view class='pictureHolder' bindtap="insertPic">
       <!-- <image class='picture' src="../../public/assets/placeholder.png"></image> -->
     <text class='pictureTip'>
       <text class='camera iconfont icon_camera'></text>

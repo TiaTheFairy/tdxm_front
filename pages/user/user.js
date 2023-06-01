@@ -31,6 +31,11 @@ Page({
     })
   },
   getUserInfo(){
+    wx.showLoading({
+      title: '加载中',
+      mask: true
+    })
+
     wx.request({
       url: server.default.getUser,
       method: 'POST',
@@ -38,6 +43,7 @@ Page({
         wxid: app.globalData.wxid
       },
       success:(res)=>{
+        wx.hideLoading()
         this.setData({
           id: res.data.userid,
           nickname: res.data.username
