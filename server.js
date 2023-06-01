@@ -7,7 +7,7 @@ let servers = {
   createUser: mainserver+'/createUser',
   getUser:mainserver+'/getUser',
   updateUser:mainserver+'/updateUser',
-  getAdmin: mainserver+'/getAdmin',
+  getAdmin:mainserver+'/getAdmin',
 
   getPostDetail:mainserver+'/getPostDetail',
   createPost:mainserver+'/createPost',

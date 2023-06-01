@@ -42,7 +42,7 @@
 .icon_faved::before{
   content: "\e9ef";
   color: red;
-  font-size: 23px;
+  font-size: 18px;
 }
 .icon_comment::before{
   content: "\e654"

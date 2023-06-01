@@ -40,7 +40,7 @@ Page({
       success:(res)=>{
         this.setData({
           id: res.data.userid,
-          username: res.data.username
+          nickname: res.data.username
         })
       }
     })

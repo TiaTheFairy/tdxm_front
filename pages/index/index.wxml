@@ -22,7 +22,7 @@
   </view>
 
   <view class='list' wx:for="{{list}}" wx:key='this' wx:if='{{!listEmpty}}'>
-    <goodItem postid='{{item.id}}' name='{{item.name}}' location='{{item.location}}' hot='{{item.hot}}' votes='{{item.votes}}' comments='{{item.comments}}' fav='{{item.fav}}'></goodItem>
+    <goodItem postid='{{item.id}}' name='{{item.name}}' location='{{item.location}}' votes='{{item.like-item.dislike}}' comments='{{item.comments}}' fav='{{item.fav}}' hot='{{item.like+item.dislike+item.comments}}'></goodItem>
   </view>
 
   <view class='listEmpty' wx:if='{{listEmpty}}'>

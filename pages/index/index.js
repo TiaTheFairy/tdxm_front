@@ -9,50 +9,18 @@ Page({
       id: 4846411651,
       name: '暨大1号',
       location: '暨南大学北门北门糖水',
-      hot: 1352,
-      votes: 950,
-      comments: 72,
+      like: 950,
+      dislike: 100,
+      comments: 10,
       fav: false
     },{
       id: 543453351,
       name: '暨大2号',
       location: '暨南大学北门北门糖水',
-      hot: 1271,
-      votes: 770,
-      comments: 41,
+      like: 481,
+      dislike: 98,
+      comments: 3,
       fav: true
-    },{
-      id: 34524254,
-      name: '暨大3号号号号号号号号号号号号',
-      location: '暨南大学北门北门糖水水水水水水水',
-      hot: 770,
-      votes: 553,
-      comments: 23,
-      fav: false
-    },{
-      id: 987789,
-      name: '暨大3号号号号号号号号号号号号',
-      location: '暨南大学北门北门糖水水水水水水水',
-      hot: 770,
-      votes: 553,
-      comments: 23,
-      fav: false
-    },{
-      id: 47777515,
-      name: '暨大3号号号号号号号号号号号号',
-      location: '暨南大学北门北门糖水水水水水水水',
-      hot: 770,
-      votes: 553,
-      comments: 23,
-      fav: false
-    },{
-      id: 888888999,
-      name: '暨大3号号号号号号号号号号号号',
-      location: '暨南大学北门北门糖水水水水水水水',
-      hot: 770,
-      votes: 553,
-      comments: 23,
-      fav: false
     }],
     listEmpty: false
   },

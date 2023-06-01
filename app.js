@@ -10,7 +10,7 @@ App({
           url: server.default.getOpenID,
           method: 'POST',
           data:{
-            code: res.code 
+            wxcode: res.code 
           },
           success:(res)=>{
             console.log(res.wxid);

@@ -9,10 +9,18 @@ Page({
       id: 4846411651,
       name: '暨大1号',
       location: '暨南大学北门北门糖水',
-      hot: 1352,
-      votes: 950,
-      comments: 72,
+      like: 950,
+      dislike: 100,
+      comments: 10,
       fav: false
+    },{
+      id: 543453351,
+      name: '暨大2号',
+      location: '暨南大学北门北门糖水',
+      like: 481,
+      dislike: 98,
+      comments: 3,
+      fav: true
     }],
     listEmpty: false
   },

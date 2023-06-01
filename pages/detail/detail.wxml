@@ -38,11 +38,11 @@
 
   <view class='status'>
     <view class='votes'>
-      <view class='like' bindtap="createVote(1)">
+      <view class='like' bindtap="createVote" data-vote='1'>
         <text class='icon iconfont icon_like'></text>
         <text class='amount'>{{upvote}} 人点赞</text>
       </view>
-      <view class='dislike' bindtap="createVote(-1)">
+      <view class='dislike' bindtap="createVote" data-vote='-1'>
         <text class='amount'>{{downvote}} 人点踩</text>
         <text class='icon iconfont icon_dislike'></text>
       </view>
@@ -65,8 +65,9 @@
 
   <view class='bottom'>
     <view class='left'>
-      <text class='fav'>
-        <text class='icon iconfont icon_fav'></text>
+      <text class='fav' bindtap='createFav'>
+        <text class='icon iconfont icon_fav' wx:if="{{!fav}}"></text>
+        <text class='icon iconfont icon_faved' wx:if="{{fav}}"></text>
       </text>
       <text class='commentAmount'>
         <text class='icon iconfont icon_comment'></text>

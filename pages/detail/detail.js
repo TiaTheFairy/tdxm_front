@@ -12,10 +12,10 @@ Page({
     desc: '<start>评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价<line>内容评价内容评价内容评价内容<end>',
     upvote: 872,
     downvote: 102,
-    commentAmount: 41,
+    commentAmount: 3,
     fav: false,
     comments: [{wxid: 123, content: 'contentcontentcontentcontent'},{wxid: 122133, content: 'asddasdsasasasasasasasasasasa'},{wxid: 122333, content: 'qweqweqwqweqweqeqeqewqeqw'}],
-    commentsFormat: [{wxid: 123, id:45454, username:'用户名', content: 'contentcontentcoadsadsadsadsadsdasntentcontent'},{wxid: 122133, id:4541254, username:'用222户名', content: 'asddasdsasasasasasadasssaddasdsadsaasasasasa'},{wxid: 122333, id:45312454, username:'用户122213名', content: 'qweqweqwqwedasasqweqeqedsadsadsadsaqewqeqw'}],
+    commentsFormat: [],
     showCommentsPop: false,
     showRelativePop: false,
     commentInput: '',
@@ -108,14 +108,14 @@ Page({
       }
     })
   },
-  createVote(vote){
+  createVote(e){
     wx.request({
       url: server.default.createVote,
       method: 'POST',
       data:{
         postid: this.data.id,
         wxid: app.globalData.wxid,
-        vote: vote
+        vote: e.currentTarget.dataset['vote']
       },
       success:(res)=>{
         if(res.data.status == 'COMPLETE') this.getPostDetail();
@@ -123,6 +123,7 @@ Page({
     })
   },
   deletePost(){
+    let that = this;
     wx.showModal({
       title: '你确定要删除吗',
       content:'删除后, 内容不可恢复',
@@ -132,19 +133,19 @@ Page({
             url: server.default.deletePost,
             method: 'POST',
             data:{
-              postid: this.data.id,
+              postid: that.data.id,
               wxid: app.globalData.wxid,
             },
             success:(res)=>{
               if(res.data.status == 'COMPLETE'){
-              this.setData({
-                showAdminPop: false,
-                showCommentsPop: false,
-                showLinkPop: false
-              })
-              wx.switchTab({
-                url: '../index/index',
-              })
+                that.setData({
+                  showAdminPop: false,
+                  showCommentsPop: false,
+                  showLinkPop: false
+                })
+                wx.switchTab({
+                  url: '../index/index',
+                })
               }
             }
           })
@@ -198,7 +199,7 @@ Page({
           desc: res.data.desc,
           upvote: res.data.upvote,
           downvote: res.data.downvote,
-          fav: res.data.fav,
+          fav: JSON.parse(res.data.fav),
           comments: res.data.comments,
           posterid: res.data.posterID
         })
@@ -219,6 +220,8 @@ Page({
             }
           }
         })
+        this.formatComment();
+        this.getRelative();
       }
     })
   },
@@ -250,7 +253,7 @@ Page({
   },
   getAdmin(){
     wx.request({
-      url: 'server.default.getAdmin',
+      url: server.default.getAdmin,
       method: 'POST',
       data:{
         wxid: app.globalData.wxid,
@@ -278,29 +281,25 @@ Page({
     })
   },
   formatComment(){
-    function getUser(){
+    this.data.commentsFormat = [];
+    for(let item of this.data.comments){
+      console.log(item);
       wx.request({
-      url: server.default.getUser,
-      method: 'POST',
+        url: server.default.getUser,
+        method: 'POST',
         data:{
-          wxid: item.wxid
+          wxid: item.poster
         },
         success:(res)=>{
-          return res;
+          this.setData({
+            commentsFormat : [...this.data.commentsFormat,{
+              wxid: item.poster,
+              userid: res.data.userid,
+              username: res.data.username,
+              content: item.content
+            }]
+          })
         }
-      })
-    }
-    for(let item in this.data.comments){
-      let res = async()=>{
-        await getUser();
-      }
-      this.setData({
-        commentsFormat : [...this.data.commentsFormat,{
-          wxid: item.wxid,
-          userid: res.userid,
-          username: res.username,
-          content: item.content
-        }]
       })
     }
   },
