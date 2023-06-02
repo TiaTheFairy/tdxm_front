@@ -29,10 +29,10 @@ Page({
     })
   },
   insertPic(){
-    // wx.showLoading({
-    //   title: '加载中',
-    //   mask: true
-    // })
+    wx.showLoading({
+      title: '加载中',
+      mask: true
+    })
 
     var fs = wx.getFileSystemManager()
     wx.chooseMedia({

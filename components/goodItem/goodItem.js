@@ -21,7 +21,9 @@ Component({
   },
   lifetimes: {
     attached: function(){
-      this.data.pic = utils.getPostPic(this.properties.postid);
+      this.setData({
+        pic : utils.getPostPic(this.properties.postid)
+      })
     }
   }
 })

@@ -50,7 +50,9 @@ Page({
           id: res.data.userid,
           nickname: res.data.username
         })
-        this.data.pic = utils.getUserPic(this.data.id);
+        this.setData({
+          pic: utils.getUserPic(this.data.id)
+        })
       }
     })
   },

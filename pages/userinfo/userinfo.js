@@ -36,29 +36,6 @@ Page({
     let that = this;
     wx.navigateTo({
       url: '/pages/userinfo/useredit/useredit?p=' + JSON.stringify(params),
-      // events: {
-      //   userEdit(data){
-      //     switch (params.t) {
-      //       case 'nickname':
-      //         that.setData({nickname: data});
-      //         break;
-      //       case 'desc':
-      //         that.setData({desc: data});
-      //         break;
-      //       case 'gender':
-      //         that.setData({gender: data});
-      //         break;
-      //       case 'birthday':
-      //         that.setData({birthday: data});
-      //         break;
-      //       case 'campus':
-      //         that.setData({campus: data});
-      //         break;
-      //       default:
-      //         break;
-      //     }
-      //   }
-      // }
     })
   },
   changeAvatar(){
@@ -68,21 +45,31 @@ Page({
     })
 
     var fs = wx.getFileSystemManager()
-    wx.chooseImage({
+    wx.chooseMedia({
       count: 1,
-      sizeType: ['compressed'],
+      mediaType: ['image'],
       sourceType: ['album', 'camera'],
+      sizeType: ['compressed'],
       success: (res)=>{
-        wx.request({
-          url: server.default.uploadPic,
-          method: 'POST',
-          data:{
-            type: 'user',
-            id: this.data.id,
-            file: fs.readFileSync(res.tempFilePaths[0])
-          },
-          success:(res)=>{
-            wx.hideLoading()
+        console.log(res);
+        console.log(fs.readFileSync(res.tempFiles[0].tempFilePath));
+        wx.getFileSystemManager().readFile({
+          filePath: res.tempFiles[0].tempFilePath,
+          encoding: 'base64',
+          success: function(res){
+            console.log(res);
+            wx.request({
+              url: server.default.uploadPic,
+              method: 'POST',
+              data:{
+                type: 'user',
+                id: app.globalData.wxid,
+                file: res.data
+              } ,
+              success:(res)=>{
+                wx.hideLoading()
+              }
+            })
           }
         })
       }

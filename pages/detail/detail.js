@@ -245,7 +245,7 @@ Page({
         this.setData({
           commentAmount: this.data.comments.length,
         })
-        this.wx.request({
+        wx.request({
           url: server.default.getUser,
           method: 'POST',
           data:{
@@ -262,8 +262,10 @@ Page({
         })
         this.formatComment();
         this.getRelative();
-        this.data.postPic = utils.getPostPic(this.data.id);
-        this.data.posterPic = utils.getUserPic(this.data.posterid)
+        this.setData({
+          postPic: utils.getPostPic(this.data.id),
+          posterPic: utils.getUserPic(this.data.posterid)
+        })
       }
     })
   },

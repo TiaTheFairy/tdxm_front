@@ -1,4 +1,4 @@
-let mainserver = '192.168.0.1'
+let mainserver = 'http://localhost:8080'
 
 let servers = {
   server: mainserver,

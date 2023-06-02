@@ -35,7 +35,31 @@ Page({
       },
       success:(res)=>{
         wx.hideLoading()
-        // this.getOpenerEventChannel.emit('userEdit', this.data.newData)
+
+        let currentPage = getCurrentPages();
+        let lastPage = currentPage[currentPage.length - 2];
+        switch (this.data.editType) {
+          case 'nickname':
+            lastPage.setData({nickname: this.data.newData})
+            break;
+          case 'desc':
+            lastPage.setData({desc: this.data.newData})
+            break;
+          case 'gender':
+            lastPage.setData({gender: this.data.newData})
+            break;
+          case 'birthday':
+            lastPage.setData({birthday: this.data.newData})
+            break;
+          case 'campus':
+            lastPage.setData({campus: parseInt(this.data.newData)})
+            break;
+          default:
+            break;
+        }
+        wx.navigateBack({
+          delta: 0,
+        })
       }
     })
   },

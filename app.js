@@ -41,6 +41,8 @@ App({
     })
   },
   globalData:{
-    wxid: -1
+    wxid: -1,
+    userEditType: '',
+    userEditValue: ''
   }
 })
