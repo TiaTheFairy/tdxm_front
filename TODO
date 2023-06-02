@@ -1,7 +1,7 @@
 FRONT END TODO
 
 1. 图片显示功能，img src
-2. 图片上传后显示图片的功能
+2. user里面的图片上传功能（等待new里面图片上传测试完成）
 3. 用户资料一套 getprofile openid
 4. 修改个人资料后，总线，子传父
 5. 后端接口准备好之后，改server地址，取消注释onLoad的get方法

@@ -1,7 +1,7 @@
 <view>
   <view class='user' bindtap="gotoUserinfo">
     <view class='left'>
-      <image class='picture' src="../../public/assets/user.png"></image>
+      <image class='picture' src="{{pic}}"></image>
     </view>
     <view class='middle'>
       <view class='name'>{{nickname}}</view>

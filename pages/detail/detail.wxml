@@ -8,7 +8,7 @@
   </wxs>
 
   <view class='cover'>
-    <image class='picture' src="../../public/assets/placeholder.png"></image>
+    <image class='picture' src="{{postPic}}"></image>
   </view>
 
   <view class='good'>
@@ -28,7 +28,7 @@
     </view>
     <view class='user'>
       <view class='avatar'>
-        <image class='picture' src="../../public/assets/user.png"></image>
+        <image class='picture' src="{{posterPic}}"></image>
       </view>
       <view class='username'>{{username}}</view>
     </view>
@@ -91,7 +91,7 @@
         <view class='commentItem'>
           <view class='user'>
             <view class='avatar'>
-              <image class='picture' src="../../public/assets/user.png"></image>
+              <image class='picture' src="{{item.userPic}}"></image>
             </view>
             <view class='username'>{{item.username}}</view>
           </view>

@@ -1,4 +1,5 @@
 import * as server from '../../server.js'
+import * as utils from '../../utils.js'
 var app = getApp()
 Page({
   data: {
@@ -72,7 +73,9 @@ Page({
       fav: false
     }],
     relativesEmpty: false,
-    myvote: 0
+    myvote: 0,
+    postPic: '../../public/assets/placeholder.png',
+    posterPic: '../../public/assets/user.png'
   },
   switchCommentPop(){
     this.closeAllPop('comments');
@@ -259,6 +262,8 @@ Page({
         })
         this.formatComment();
         this.getRelative();
+        this.data.postPic = utils.getPostPic(this.data.id);
+        this.data.posterPic = utils.getUserPic(this.data.posterid)
       }
     })
   },
@@ -320,7 +325,6 @@ Page({
   formatComment(){
     this.data.commentsFormat = [];
     for(let item of this.data.comments){
-      console.log(item);
       wx.request({
         url: server.default.getUser,
         method: 'POST',
@@ -333,7 +337,8 @@ Page({
               wxid: item.poster,
               userid: res.data.userid,
               username: res.data.username,
-              content: item.content
+              content: item.content,
+              userPic: utils.getUserPic(res.data.userid)
             }]
           })
         }
@@ -351,6 +356,7 @@ Page({
     })
   },
   onLoad(options){
+    this.data.id = options.id
     wx.nextTick(()=>{
       this.getAdmin();
       // this.getPostDetail();

@@ -1,9 +1,11 @@
 import * as server from '../../server.js'
+import * as utils from '../../utils.js'
 var app = getApp()
 Page({
   data: {
     id: 2020202020,
     nickname:'爱探店的暨大er',
+    pic: '../../public/assets/user.png'
   },
   gotoUserinfo(){
     wx.navigateTo({
@@ -48,6 +50,7 @@ Page({
           id: res.data.userid,
           nickname: res.data.username
         })
+        this.data.pic = utils.getUserPic(this.data.id);
       }
     })
   },

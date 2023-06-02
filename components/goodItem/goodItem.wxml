@@ -18,7 +18,7 @@
 
   <view class='item' bindtap='gotoDetail'>
     <view class='left'>
-      <image class='picture' src="../../public/assets/placeholder.png"></image>
+      <image class='picture' src="{{pic}}"></image>
     </view>
     <view class='infos'>
       <view class='name'>{{fn.formatName(name)}}</view>

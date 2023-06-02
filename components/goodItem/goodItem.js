@@ -1,4 +1,4 @@
-// components/goodItem/goodItem.js
+import * as utils from '../../utils.js'
 Component({
   properties: {
     postid: {type:Number, value: 0},
@@ -10,7 +10,7 @@ Component({
     fav: {type: Boolean, value: false},
   },
   data: {
-
+    pic: '../../public/assets/placeholder.png'
   },
   methods: {
     gotoDetail(){
@@ -19,4 +19,9 @@ Component({
       })
     }
   },
+  lifetimes: {
+    attached: function(){
+      this.data.pic = utils.getPostPic(this.properties.postid);
+    }
+  }
 })
