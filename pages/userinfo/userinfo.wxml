@@ -30,7 +30,7 @@
 
   <view class='main'>
     <view class='avatar listItem' bindtap='changeAvatar'>
-      <image class='picture' src="../../public/assets/placeholder.png"></image>
+      <image class='picture' src="{{pic}}"></image>
       <text class='camera iconfont icon_camera'></text>
     </view>
     <view class='nickname listItem'>

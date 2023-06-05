@@ -65,10 +65,10 @@
 }
 .avatar .picture{
   display: block;
-  width: 30px;
-  height: 30px;
-  margin-top: 10px;
-  margin-left: 10px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  overflow: hidden;
 }
 .user .username{
   font-size: 15px;
@@ -152,6 +152,11 @@
   right: 2px;
   margin-top: 3px;
 }
+.bottom .owner{
+  position: absolute;
+  right: 2px;
+  margin-top: 3px;
+}
 .commentPop{
   z-index: 9;
   width: 100%;
@@ -175,6 +180,7 @@
   bottom: 35px;
   width: 90%;
   margin-left: 5%;
+  z-index: 9;
 }
 .commentInner {
   display: flex;
@@ -191,6 +197,12 @@
 .commentIcon{
   margin-right: 5px;
 }
+.commentIconSend{
+  position: absolute;
+  padding: 10px;
+  right: 0px;
+  z-index: 10
+}
 .commentView{
   margin-top: 10px;
   height: 82%;
@@ -204,10 +216,10 @@
 }
 .commentView .avatar .picture{
   display: block;
-  width: 20px;
-  height: 20px;
-  margin-top: 5px;
-  margin-left: 5px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  overflow: hidden;
 }
 .commentView .username{
   position: relative;
@@ -258,6 +270,11 @@
 .adminPop .icon{
   margin-left: 15px;
   margin-right: 5px;
+}
+.adminPop .icon_highlighted{
+  margin-left: 15px;
+  margin-right: 5px;
+  font-size: 10px;
 }
 .adminPop .divider{
   width: 90%;

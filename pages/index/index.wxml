@@ -21,8 +21,16 @@
     </view>
   </view>
 
+  <view class='highlights' wx:if='{{!highlightsEmpty}}'>
+    <swiper class='swiper' autoplay interval="2500" circular current="{{swiperIndex}}">     
+      <swiper-item class='swiperItem' wx:for="{{highlights}}" wx:key='this' >
+        <goodItem postid='{{item.postid}}' name='{{item.name}}' location='{{item.location}}' votes='{{item.like-item.dislike}}' comments='{{item.comments}}' fav='{{item.fav}}' hot='{{item.like+item.dislike+item.comments}}' highlight='true'></goodItem>
+      </swiper-item>
+    </swiper>
+  </view>
+
   <view class='list' wx:for="{{list}}" wx:key='this' wx:if='{{!listEmpty}}'>
-    <goodItem postid='{{item.id}}' name='{{item.name}}' location='{{item.location}}' votes='{{item.like-item.dislike}}' comments='{{item.comments}}' fav='{{item.fav}}' hot='{{item.like+item.dislike+item.comments}}'></goodItem>
+    <goodItem postid='{{item.postid}}' name='{{item.name}}' location='{{item.location}}' votes='{{item.like-item.dislike}}' comments='{{item.comments}}' fav='{{item.fav}}' hot='{{item.like+item.dislike+item.comments}}'></goodItem>
   </view>
 
   <view class='listEmpty' wx:if='{{listEmpty}}'>
@@ -32,7 +40,7 @@
 
   <view class='floatButtons'>
     <view class='floatButton iconfont icon_top' bindtap="gotoTop"></view>
-    <view class='floatButton iconfont icon_refresh' bindtap='searchList'></view>
+    <view class='floatButton iconfont icon_refresh' bindtap='refresh'></view>
     <view class='floatButton iconfont icon_new' bindtap="gotoNew"></view>
   </view>
 </view>

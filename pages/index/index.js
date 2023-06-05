@@ -5,24 +5,12 @@ Page({
     searchInput: '',
     orderBy: 0,
     orderFunctions: ["时间","热度","值度"],
-    list: [{
-      id: 4846411651,
-      name: '暨大1号',
-      location: '暨南大学北门北门糖水',
-      like: 950,
-      dislike: 100,
-      comments: 10,
-      fav: false
-    },{
-      id: 543453351,
-      name: '暨大2号',
-      location: '暨南大学北门北门糖水',
-      like: 481,
-      dislike: 98,
-      comments: 3,
-      fav: true
-    }],
-    listEmpty: false
+    list: [],
+    listEmpty: false,
+    highlights: [{postid: 2234, name: 'a', location: 'aa', like: 1, dislike: 2, comments: 3, fav: false},
+    {postid: 2235, name: 'b', location: 'bb', like: 2, dislike: 1, comments: 3, fav: false}],
+    highlightsEmpty: false,
+    swiperIndex: 0
   },
   onInput(e){
     this.setData({
@@ -41,7 +29,7 @@ Page({
   },
   gotoNew(){
     wx.navigateTo({
-      url: '../new/new',
+      url: '/pages/new/new',
     })
   },
   gotoTop(){
@@ -59,11 +47,11 @@ Page({
       title: '加载中',
       mask: true
     })
-
     wx.request({
       url: server.default.getListIndex,
       method: 'POST',
       data:{
+        wxid: app.globalData.wxid,
         keyword: keyword,
         order: order
       },
@@ -75,6 +63,9 @@ Page({
           })
         }
         else{
+          this.setData({
+            list: []
+          })
           this.setData({
             listEmpty: false,
             list: res.data.list
@@ -96,25 +87,40 @@ Page({
       success:(res)=>{
         wx.hideLoading()
         if(res.data.list.length == 0){
-          this.getList();
+          this.setData({
+            highlightsEmpty: true
+          })
         }
         else{
           this.setData({
-            listEmpty: false,
-            list: res.data.list
+            highlights: []
+          })
+          this.setData({
+            highlights: res.data.list,
+            highlightsEmpty: false
           })
         }
       }
     })
   },
+  refresh(){
+    this.searchList();
+    this.getHighlight();
+  },
   onLoad(){
-    if(!app.globalData.wxid || app.globalData.wxid == -1){
-      // wx.navigateTo({
-      //   url: '/pages/wxconnect/wxconnect',
-      // })
+    if(app.globalData.wxid && app.globalData.wxid != -1){
+      this.getList();
+      this.getHighlight();
     }
-    else{
-      //  this.getHighlight();
-    }
+  },
+  onShow(){
+    var getList = setInterval(()=>{
+      if(app.globalData.wxid && app.globalData.wxid != -1){
+        if(this.data.list.length == 0){
+          this.getList();
+          clearInterval(getList);
+        }
+      }
+    },500)
   }
 })

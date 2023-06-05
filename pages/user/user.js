@@ -3,23 +3,23 @@ import * as utils from '../../utils.js'
 var app = getApp()
 Page({
   data: {
-    id: 2020202020,
-    nickname:'爱探店的暨大er',
-    pic: '../../public/assets/user.png'
+    id: 0,
+    nickname:'',
+    pic: ''
   },
   gotoUserinfo(){
     wx.navigateTo({
-      url: '../userinfo/userinfo',
+      url: '/pages/userinfo/userinfo',
     })
   },
   gotoFav(){
     wx.navigateTo({
-      url: '../myfav/myfav',
+      url: '/pages/myfav/myfav',
     })
   },
   gotoPub(){
     wx.navigateTo({
-      url: '../mypub/mypub',
+      url: '/pages/mypub/mypub',
     })
   },
   copyID(){
@@ -56,7 +56,7 @@ Page({
       }
     })
   },
-  onLoad(){
-    // this.getUserInfo()
+  onShow(){
+    this.getUserInfo()
   }
 })

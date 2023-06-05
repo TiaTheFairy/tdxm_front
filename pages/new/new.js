@@ -1,4 +1,5 @@
 import * as server from '../../server.js'
+import * as utils from '../../utils.js'
 var app = getApp()
 Page({
   data: {
@@ -7,6 +8,7 @@ Page({
     oldprice: '',
     newprice: '',
     desc: '',
+    pic: ''
   },
   setupInputName(e){
     this.setData({
@@ -29,6 +31,8 @@ Page({
     })
   },
   insertPic(){
+    let that = this;
+
     wx.showLoading({
       title: '加载中',
       mask: true
@@ -41,13 +45,10 @@ Page({
       sourceType: ['album', 'camera'],
       sizeType: ['compressed'],
       success: (res)=>{
-        console.log(res);
-        console.log(fs.readFileSync(res.tempFiles[0].tempFilePath));
         wx.getFileSystemManager().readFile({
           filePath: res.tempFiles[0].tempFilePath,
           encoding: 'base64',
           success: function(res){
-            console.log(res);
             wx.request({
               url: server.default.uploadPic,
               method: 'POST',
@@ -57,11 +58,17 @@ Page({
                 file: res.data
               } ,
               success:(res)=>{
+                that.setData({
+                  pic: utils.getPostPic(app.globalData.wxid)
+                })
                 wx.hideLoading()
               }
             })
           }
         })
+      },
+      fail:(res)=>{
+        wx.hideLoading()
       }
     })
   },
@@ -71,28 +78,38 @@ Page({
     })
   },
   confirmButton(){
-    wx.showLoading({
-      title: '加载中',
-      mask: true
-    })
-
-    wx.request({
-      url: server.default.createPost,
-      method: 'POST',
-      data:{
-        name: this.data.name,
-        location: this.data.location,
-        oldprice: this.data.oldprice,
-        newprice: this.data.newprice,
-        desc: this.data.desc,
-        postID: app.globalData.wxid
-      },
-      success:(res)=>{
-        wx.hideLoading()
-        wx.navigateTo({
-          url: '../../pages/detail/detail?id=' + res.data.postid,
-        })
-      }
-    })
+    if(this.data.name == '' || this.data.location == '' || this.data.oldprice == '' || this.data.newprice == '' || this.data.desc == '' || this.data.pic == ''){
+      wx.showToast({
+        title: '请输入所有内容',
+        icon: 'error'
+      })
+    }
+    else{
+      wx.showLoading({
+        title: '加载中',
+        mask: true
+      }) 
+      wx.request({
+        url: server.default.createPost,
+        method: 'POST',
+        data:{
+          name: this.data.name,
+          location: this.data.location,
+          oldprice: this.data.oldprice,
+          newprice: this.data.newprice,
+          desc: this.data.desc,
+          postID: app.globalData.wxid
+        },
+        success:(res)=>{
+          wx.hideLoading()
+          var pages = getCurrentPages();
+          var lastpage = pages[pages.length - 2]
+          lastpage.getList();
+          wx.redirectTo({
+            url: '/pages/detail/detail?id=' + res.data.postid,
+          })
+        }
+      })
+    }
   }
 })

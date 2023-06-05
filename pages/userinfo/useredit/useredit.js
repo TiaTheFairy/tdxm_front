@@ -8,60 +8,65 @@ Page({
     campusArray: ["石牌校区","番禺校区","珠海校区","深圳校区"],
     disableSave: true
   },
-  bindDateChange: function(e) {
-    console.log('picker发送选择改变，携带值为', e.detail.value)
-    this.setData({
-      date: e.detail.value
-    })
-  },
   cancel(){
     wx.navigateBack({
       delta: 0,
     })
   },
   save(){
-    wx.showLoading({
-      title: '加载中',
-      mask: true
-    })
+    if(this.data.newData == ''){
+      wx.showToast({
+        title: '请输入内容',
+        icon: 'error'
+      })
+    }
+    else{
+      wx.showLoading({
+        title: '加载中',
+        mask: true
+      })
+      wx.request({
+        url: server.default.updateUser,
+        method: 'POST',
+        data:{
+          wxid: app.globalData.wxid,
+          type: this.data.editType,
+          changedData: this.data.newData
+        },
+        success:(res)=>{
+          wx.hideLoading()
 
-    wx.request({
-      url: server.default.updateUser,
-      method: 'POST',
-      data:{
-        wxid: app.globalData.wxid,
-        type: this.data.editType,
-        changedData: this.data.newData
-      },
-      success:(res)=>{
-        wx.hideLoading()
-
-        let currentPage = getCurrentPages();
-        let lastPage = currentPage[currentPage.length - 2];
-        switch (this.data.editType) {
-          case 'nickname':
-            lastPage.setData({nickname: this.data.newData})
-            break;
-          case 'desc':
-            lastPage.setData({desc: this.data.newData})
-            break;
-          case 'gender':
-            lastPage.setData({gender: this.data.newData})
-            break;
-          case 'birthday':
-            lastPage.setData({birthday: this.data.newData})
-            break;
-          case 'campus':
-            lastPage.setData({campus: parseInt(this.data.newData)})
-            break;
-          default:
-            break;
+          let currentPage = getCurrentPages();
+          let lastPage = currentPage[currentPage.length - 2];
+          switch (this.data.editType) {
+            case 'nickname':
+              lastPage.setData({nickname: this.data.newData})
+              break;
+            case 'desc':
+              lastPage.setData({desc: this.data.newData})
+              break;
+            case 'gender':
+              lastPage.setData({gender: this.data.newData})
+              break;
+            case 'birthday':
+              lastPage.setData({birthday: this.data.newData})
+              break;
+            case 'campus':
+              lastPage.setData({campus: parseInt(this.data.newData)})
+              break;
+            default:
+              break;
         }
         wx.navigateBack({
           delta: 0,
         })
       }
     })
+
+    }
+    
+
+    
   },
   doneNick(e){
     this.setData({

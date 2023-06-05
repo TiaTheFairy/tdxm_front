@@ -4,18 +4,18 @@ var app = getApp()
 Page({
   data: {
     id: 0,
-    posterid: 123,
-    title:'暨大1号',
-    location: '暨南大学北门糖水',
-    oldprice: 15,
-    newprice: 10,
-    username: '爱探店的暨大er',
-    desc: '<start>评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价内容评价<line>内容评价内容评价内容评价内容<end>',
-    upvote: 872,
-    downvote: 102,
-    commentAmount: 3,
+    posterid: 0,
+    title:'',
+    location: '',
+    oldprice: 0,
+    newprice: 0,
+    username: '',
+    desc: '',
+    like: 0,
+    dislike: 0,
+    commentAmount: 0,
     fav: false,
-    comments: [{wxid: 123, content: 'contentcontentcontentcontent'},{wxid: 122133, content: 'asddasdsasasasasasasasasasasa'},{wxid: 122333, content: 'qweqweqwqweqweqeqeqewqeqw'}],
+    comments: [],
     commentsFormat: [],
     showCommentsPop: false,
     showRelativePop: false,
@@ -23,57 +23,10 @@ Page({
     isAdmin: true,
     isOwner: false,
     showAdminPop: false,
-    relatives: [{
-      id: 4846411651,
-      name: '暨大1号',
-      location: '暨南大学北门北门糖水',
-      hot: 1352,
-      votes: 950,
-      comments: 72,
-      fav: false
-    },{
-      id: 543453351,
-      name: '暨大2号',
-      location: '暨南大学北门北门糖水',
-      hot: 1271,
-      votes: 770,
-      comments: 41,
-      fav: true
-    },{
-      id: 34524254,
-      name: '暨大3号号号号号号号号号号号号',
-      location: '暨南大学北门北门糖水水水水水水水',
-      hot: 770,
-      votes: 553,
-      comments: 23,
-      fav: false
-    },{
-      id: 987789,
-      name: '暨大3号号号号号号号号号号号号',
-      location: '暨南大学北门北门糖水水水水水水水',
-      hot: 770,
-      votes: 553,
-      comments: 23,
-      fav: false
-    },{
-      id: 47777515,
-      name: '暨大3号号号号号号号号号号号号',
-      location: '暨南大学北门北门糖水水水水水水水',
-      hot: 770,
-      votes: 553,
-      comments: 23,
-      fav: false
-    },{
-      id: 888888999,
-      name: '暨大3号号号号号号号号号号号号',
-      location: '暨南大学北门北门糖水水水水水水水',
-      hot: 770,
-      votes: 553,
-      comments: 23,
-      fav: false
-    }],
+    relatives: [],
     relativesEmpty: false,
     myvote: 0,
+    isHighlight: false,
     postPic: '../../public/assets/placeholder.png',
     posterPic: '../../public/assets/user.png'
   },
@@ -88,14 +41,9 @@ Page({
   },
   switchRelativePop(){
     this.closeAllPop('relative');
-    if(this.data.relatives.length == 0){
-      this.getRelative();
-    }
-    else{
-      this.setData({
-        showRelativePop: this.data.showRelativePop ? false : true,
-      })
-    }
+    this.setData({
+      showRelativePop: this.data.showRelativePop ? false : true,
+    })
   },
   createComment(){
     wx.showLoading({
@@ -115,6 +63,9 @@ Page({
         wx.hideLoading()
         if(res.data.status == 'COMPLETE') {
           this.getPostDetail();
+          this.setData({
+            commentInput: ''
+          })
         }
       }
     })
@@ -169,6 +120,10 @@ Page({
                   showCommentsPop: false,
                   showLinkPop: false
                 })
+                var pages = getCurrentPages();
+                var lastpage = pages[pages.length - 2]
+                lastpage.getList();
+
                 wx.switchTab({
                   url: '../index/index',
                 })
@@ -191,7 +146,14 @@ Page({
         wxid: app.globalData.wxid,
       },
       success:(res)=>{
-        console.log('success highlight');
+        wx.showToast({
+          title: this.data.isHighlight? '取消加精成功' : '加精成功',
+          icon: 'success'
+        })
+        this.setData({
+          showAdminPop: false,
+          isHighlight: !this.data.isHighlight
+        })
       }
     })
   },
@@ -221,11 +183,11 @@ Page({
       title: '加载中',
       mask: true
     })
-
     wx.request({
       url: server.default.getPostDetail,
       method: 'POST',
       data:{
+        wxid: app.globalData.wxid,
         postid: this.data.id
       },
       success:(res)=>{
@@ -236,11 +198,13 @@ Page({
           newprice: res.data.newprice,
           username: res.data.posterName,
           desc: res.data.desc,
-          upvote: res.data.upvote,
-          downvote: res.data.downvote,
+          like: res.data.upvote,
+          dislike: res.data.downvote,
           fav: JSON.parse(res.data.fav),
           comments: res.data.comments,
-          posterid: res.data.posterID
+          posterid: res.data.posterID,
+          myvote: res.data.vote,
+          isHighlight: res.data.isHighlight
         })
         this.setData({
           commentAmount: this.data.comments.length,
@@ -253,7 +217,7 @@ Page({
           },
           success:(res)=>{
             wx.hideLoading()
-            if(res.data.userid == app.data.posterID){
+            if(res.data.userid == this.data.posterid){
               this.setData({
                 isOwner: true
               })
@@ -270,27 +234,26 @@ Page({
     })
   },
   getRelative(){
-    let keyword = this.data.title;
-    let order = 'price';
-
     wx.request({
       url: server.default.getListIndex,
       method: 'POST',
       data:{
-        keyword: keyword,
-        order: order
+        keyword: this.data.title,
+        order: 'hot',
+        wxid: app.globalData.wxid
       },
       success:(res)=>{
-        if(res.data.list.length == 0){
+        if(res.data.list.length != 0){
           this.setData({
-            relativesEmpty: true
+            relativesEmpty: false,
+            relatives: res.data.list.filter(item=> item.postid != this.data.id)
+          })
+          this.setData({
+            relativesEmpty: this.data.relatives.length == 0? true: false
           })
         }
         else{
-          this.setData({
-            relativesEmpty: false,
-            relatives: res.data.list
-          })
+          
         }
       }
     })
@@ -304,7 +267,7 @@ Page({
       },
       success:(res)=>{
         this.setData({
-          isAdmin: res.isAdmin
+          isAdmin: res.data
         })
       }
     })
@@ -358,10 +321,12 @@ Page({
     })
   },
   onLoad(options){
-    this.data.id = options.id
+    this.setData({
+      id: options.id
+    })
     wx.nextTick(()=>{
       this.getAdmin();
-      // this.getPostDetail();
+      this.getPostDetail();
     })
   }
 })

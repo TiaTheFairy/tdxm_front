@@ -1,13 +1,15 @@
 import * as server from '../../server.js'
+import * as utils from '../../utils.js'
 var app = getApp()
 Page({
   data: {
-    id: 123456,
-    nickname: "这是我的昵称",
-    desc: "这是我的简介这是我的简介这是我的简介这是我的简介这是我的简介",
+    id: 0,
+    nickname: "",
+    desc: "",
     gender: 0,
-    birthday: [2002,3,1],
-    campus: 2
+    birthday: [2000,1,1],
+    campus: 0,
+    pic: '',
   },
   editInfo(e){
     var params = {
@@ -39,6 +41,7 @@ Page({
     })
   },
   changeAvatar(){
+    let that = this;
     wx.showLoading({
       title: '加载中',
       mask: true
@@ -51,13 +54,10 @@ Page({
       sourceType: ['album', 'camera'],
       sizeType: ['compressed'],
       success: (res)=>{
-        console.log(res);
-        console.log(fs.readFileSync(res.tempFiles[0].tempFilePath));
         wx.getFileSystemManager().readFile({
           filePath: res.tempFiles[0].tempFilePath,
           encoding: 'base64',
           success: function(res){
-            console.log(res);
             wx.request({
               url: server.default.uploadPic,
               method: 'POST',
@@ -68,10 +68,16 @@ Page({
               } ,
               success:(res)=>{
                 wx.hideLoading()
-              }
+                that.setData({
+                  pic: utils.getUserPic(that.data.id)
+                })
+              },
             })
           }
         })
+      },
+      fail:(res)=>{
+        wx.hideLoading()
       }
     })
   },
@@ -95,12 +101,13 @@ Page({
           desc: res.data.desc,
           gender: res.data.gender,
           campus: res.data.campus,
-          birthday: JSON.parse(res.data.birthday)
+          birthday: JSON.parse(res.data.birthday),
+          pic: utils.getUserPic(res.data.userid)
         })
       }
     })
   },
   onLoad() {
-    // getUserInfo()
+    this.getUserInfo()
   },
 })

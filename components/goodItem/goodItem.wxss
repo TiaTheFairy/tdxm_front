@@ -36,10 +36,26 @@
   font-size: 18px;
 }
 .divider{
+  width: 70%;
+  height: 1px;
+  background-color: rgba(124, 124, 124, 0.712);
+  margin-left: 15%;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+.longDivider{
   width: 94%;
   height: 1px;
   background-color: rgba(124, 124, 124, 0.712);
   margin-left: 3%;
   margin-top: 15px;
   margin-bottom: 15px;
+}
+.highlight{
+  position: absolute;
+  right: 15px;
+  top: 4px;
+  font-weight: bolder;
+  border: 2px dotted rgb(202, 156, 4);
+  background-color: yellow;
 }

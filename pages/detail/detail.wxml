@@ -2,7 +2,8 @@
   <wxs module="fn">
     module.exports = {
       calVoteRate: function(upvote, downvote){
-        return 100 * (upvote/(upvote+downvote)).toFixed(3);
+        if(upvote + downvote == 0) return 50;
+        else return (100 * (upvote/(upvote+downvote))).toFixed(0);
       }
     }
   </wxs>
@@ -39,27 +40,29 @@
   <view class='status'>
     <view class='votes'>
       <view class='like' bindtap="createVote" data-vote='1'>
-        <text class='icon iconfont icon_like'></text>
-        <text class='amount'>{{upvote}} 人点赞</text>
+        <text class='icon iconfont icon_like' wx:if="{{myvote != 1}}"></text>
+        <text class='icon iconfont icon_liked' wx:if="{{myvote == 1}}"></text>
+        <text class='amount'>{{like}} 人点赞</text>
       </view>
       <view class='dislike' bindtap="createVote" data-vote='-1'>
-        <text class='amount'>{{downvote}} 人点踩</text>
-        <text class='icon iconfont icon_dislike'></text>
+        <text class='amount'>{{dislike}} 人点踩</text>
+        <text class='icon iconfont icon_dislike' wx:if="{{myvote != -1}}"></text>
+        <text class='icon iconfont icon_disliked' wx:if="{{myvote == -1}}"></text>
       </view>
     </view>
     <view class='value'>
       <text class='ifworth'>
-        <text class='icon iconfont icon_like' wx:if="{{upvote > downvote}}"></text>
+        <text class='icon iconfont icon_like' wx:if="{{like > dislike}}"></text>
         <text class='icon iconfont icon_dislike' wx:else></text>
       </text>
       <text class='valueText'>总体值度</text>
-      <text class='valueNum'>{{upvote-downvote}} </text>
-      <text class='valueRate'>{{fn.calVoteRate(upvote,downvote)}}%</text>
+      <text class='valueNum'>{{like-dislike}} </text>
+      <text class='valueRate'>({{fn.calVoteRate(like,dislike)}}%)</text>
     </view>
     <view class='hot'>
       <text class='icon iconfont icon_hot'></text>
       <text class='hotText'>总体热度</text>
-      <text class='hotNum'>{{upvote+downvote+commentAmount}} </text>
+      <text class='hotNum'>{{like+dislike+commentAmount}} </text>
     </view>
   </view>
 
@@ -80,8 +83,11 @@
     <view class='right' bindtap="switchRelativePop">
       <text class='icon iconfont icon_link'></text>
     </view>
-    <view class='admin' bindtap="switchAdminPop" wx:if="{{isAdmin||isOwner}}">
+    <view class='admin' bindtap="switchAdminPop" wx:if="{{isAdmin}}">
       <text class='iconfont icon_menu'></text>
+    </view>
+    <view class='owner' bindtap="deletePost" wx:if="{{isOwner&&!isAdmin}}">
+      <text class='iconfont icon_delete'></text>
     </view>
   </view>
 
@@ -110,7 +116,7 @@
       <view class="commentInner">
         <text class='commentIcon iconfont icon_comment'></text> 
         <input class="commentInput" placeholder="请输入评论内容" bindinput="onInput" value='{{commentInput}}'/>
-        <text class='commentIcon iconfont icon_send' bindtap='createComment'></text>
+        <text class='commentIconSend iconfont icon_send' bindtap='createComment'></text>
       </view>
     </view>
   </view>
@@ -118,7 +124,7 @@
   <scroll-view scroll-y="true" class='relativePop' wx:if="{{showRelativePop}}">
     <view class='relativeTitle'>相关商品</view>
     <view class='relativeList' wx:for="{{relatives}}" wx:key="this" wx:if="{{!relativesEmpty}}">
-      <goodItem postid='{{item.id}}' name='{{item.name}}' location='{{item.location}}' hot='{{item.hot}}' votes='{{item.votes}}' comments='{{item.comments}}' fav='{{item.fav}}'></goodItem>
+      <goodItem postid='{{item.postid}}' name='{{item.name}}' location='{{item.location}}' hot='{{item.like+item.dislike+item.comments}}' votes='{{item.like-item.dislike}}' comments='{{item.comments}}' fav='{{item.fav}}'></goodItem>
     </view>
     <view class='relativeEmpty' wx:if="{{relativesEmpty}}">
       <view class='relativeEmptyText'>没有匹配的内容</view>
@@ -127,15 +133,18 @@
   </scroll-view>
 
   <view class='adminPop' wx:if='{{showAdminPop}}'>
-    <view wx:if='{{isAdmin||isOwner}}'>
+    <view>
       <text class='icon iconfont icon_delete'></text>
       <text class='text' bindtap="deletePost">删除</text>
     </view> 
-    <view class='divider' wx:if='{{isAdmin}}'></view>
-    <view wx:if='{{isAdmin}}'>
-      <text class='icon iconfont icon_highlight'></text>
-      <text class='text' bindtap='highlightPost'>加精</text>
+    <view class='divider'></view>
+    <view>
+      <text class='icon iconfont icon_highlight' wx:if="{{!isHighlight}}"></text>
+      <text class='text' bindtap='highlightPost' wx:if="{{!isHighlight}}">加精</text>
+      <text class='icon iconfont icon_highlighted' wx:if="{{isHighlight}}"></text>
+      <text class='text' bindtap='highlightPost' wx:if="{{isHighlight}}">取消加精</text>
     </view>
   </view>
+
   <view class='popOverlay' wx:if='{{showAdminPop||showCommentsPop||showRelativePop}}' bindtap="closeAllPop"></view>
 </view>

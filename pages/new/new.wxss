@@ -11,6 +11,10 @@
   height: 150px;
   margin-left: 80px;
 }
+.picture{
+  width: 150px;
+  height: 150px;
+}
 .pictureTip{
   display: flex;
   flex-direction: column;

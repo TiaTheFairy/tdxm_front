@@ -1,7 +1,7 @@
 <view class='frame'>
   <view class='pictureHolder' bindtap="insertPic">
-      <!-- <image class='picture' src="../../public/assets/placeholder.png"></image> -->
-    <text class='pictureTip'>
+      <image class='picture' src="{{pic}}" wx:if="{{pic != ''}}"></image>
+    <text class='pictureTip' wx:if="{{pic == ''}}">
       <text class='camera iconfont icon_camera'></text>
       <text class='pictureAdd'>插入图片</text>
     </text>

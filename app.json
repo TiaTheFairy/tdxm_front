@@ -1,7 +1,7 @@
 {
   "pages": [
-    "pages/index/index",
     "pages/wxconnect/wxconnect",
+    "pages/index/index",
     "pages/new/new",
     "pages/detail/detail",
     "pages/user/user",

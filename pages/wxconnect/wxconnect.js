@@ -10,25 +10,22 @@ Page({
     wx.getUserProfile({
       desc: '授权微信资料',
       success:(res)=>{
-        console.log(res.userInfo);
         profile = res.userInfo;
-
         wx.showLoading({
           title: '加载中',
           mask: true
         })
 
         wx.request({
-          url: 'server.default.getUser',
+          url: server.default.getUser,
           method: 'POST',
           data:{
             wxid: app.globalData.wxid
           },
           success:(res)=>{
-            wx.hideLoading()
-            if(res.status == 'FAIL_NOMATCH'){
+            if(!res.data.status){
               wx.request({
-                url: 'server.default.createUser',
+                url: server.default.createUser,
                 method: 'POST',
                 data:{
                   wxid: app.globalData.wxid,
@@ -36,15 +33,47 @@ Page({
                   avatar: profile.avatarUrl
                 },
                 success:(res)=>{
-                  wx.navigateTo({
-                    url: '../index/index',
-                  })
+                  if(res.data.status == 'COMPLETE'){
+                    wx.downloadFile({
+                      url: profile.avatarUrl,
+                      success:(res)=>{
+                        wx.getFileSystemManager().readFile({
+                          filePath: res.tempFilePath,
+                          encoding: 'base64',
+                          success: function(res){
+                            wx.request({
+                              url: server.default.uploadPic,
+                              method: 'POST',
+                              data:{
+                                type: 'user',
+                                id: app.globalData.wxid,
+                                file: res.data
+                              } ,
+                              success:(res)=>{
+                                wx.hideLoading()
+                                wx.redirectTo({
+                                  url: '../index/index',
+                                })
+                              }
+                            })
+                          }
+                        })
+                      }
+                    })
+                  }
+                  else{
+                    wx.showToast({
+                      title: '请再试一次',
+                      icon: 'error'
+                    })
+                  }
                 }
               })
             }
             else{
+              wx.hideLoading()
               wx.navigateTo({
-                url: '../index/index',
+                url: '/pages/index/index',
               })
             }
           }
