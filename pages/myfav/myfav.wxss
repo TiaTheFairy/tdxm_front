@@ -1,8 +1,5 @@
 @import "../../public/iconfont.wxss";
 
-.list{
-  margin-top: 50px;
-}
 .listEmpty{
   font-size: 25px;
   margin-top: 60px;
